@@ -11,7 +11,7 @@ addons:
     token: $SONAR_TOKEN
 
 script:
-  - ./mvnw clean package sonar:sonar -Dsonar.projectKey=joostlek_richrail -Dsonar.organization=joostlek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+  - mvn clean package sonar:sonar -Dsonar.projectKey=joostlek_richrail -Dsonar.organization=joostlek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 cache:
   directories:
