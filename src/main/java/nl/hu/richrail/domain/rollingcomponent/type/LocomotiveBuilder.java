@@ -1,6 +1,6 @@
-package domain.rollingcomponent.type;
+package nl.hu.richrail.domain.rollingcomponent.type;
 
-import domain.rollingcomponent.RollingComponentBuilder;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilder;
 
 public class LocomotiveBuilder implements RollingComponentBuilder {
     private String imagePath;

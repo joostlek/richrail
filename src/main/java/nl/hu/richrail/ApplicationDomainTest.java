@@ -1,6 +1,7 @@
-import domain.Train;
-import domain.TrainFacade;
-import domain.rollingcomponent.RollingComponent;
+package nl.hu.richrail;
+ 
+import nl.hu.richrail.domain.Train;
+import nl.hu.richrail.domain.TrainFacade;
 
 public class ApplicationDomainTest {
     public static void main(String[] args) {

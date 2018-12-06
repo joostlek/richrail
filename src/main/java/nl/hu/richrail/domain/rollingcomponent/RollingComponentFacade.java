@@ -1,9 +1,9 @@
-package domain.rollingcomponent;
+package nl.hu.richrail.domain.rollingcomponent;
 
-import domain.rollingcomponent.type.Locomotive;
-import domain.rollingcomponent.type.LocomotiveBuilder;
-import domain.rollingcomponent.type.Wagon;
-import domain.rollingcomponent.type.WagonBuilder;
+import nl.hu.richrail.domain.rollingcomponent.type.Locomotive;
+import nl.hu.richrail.domain.rollingcomponent.type.LocomotiveBuilder;
+import nl.hu.richrail.domain.rollingcomponent.type.Wagon;
+import nl.hu.richrail.domain.rollingcomponent.type.WagonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

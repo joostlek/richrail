@@ -1,6 +1,6 @@
-package domain.rollingcomponent.type;
+package nl.hu.richrail.domain.rollingcomponent.type;
 
-import domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 public class Wagon extends RollingComponent {
     private int seatPlaces;

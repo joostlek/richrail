@@ -1,6 +1,6 @@
-package domain;
+package nl.hu.richrail.domain;
 
-import domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package domain.rollingcomponent;
+package nl.hu.richrail.domain.rollingcomponent;
 
 public abstract class RollingComponent {
     private int id;
