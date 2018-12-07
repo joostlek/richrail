@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainFacade {
-    // TODO: TrainRepositoryInterface implementation
-
-    private List<Train> trains = new ArrayList<Train>();
+    private List<Train> trains = new ArrayList<>();
 
     public Train getTrain(String name) {
         for (Train train : trains) {
-            if (train.getName().equalsIgnoreCase(name)) {
+            if (train.getKey().equalsIgnoreCase(name)) {
                 return train;
             }
         }
@@ -25,23 +23,31 @@ public class TrainFacade {
     }
 
     public boolean createTrain(String name) {
-        if (getTrain(name) != null) {
-            return false;
-        } else {
-            trains.add(new Train(name));
-            return true;
-        }
+        return trains.add(new Train(name));
     }
 
     public boolean createTrain(String name, RollingComponent rollingComponent) {
-        return false;
+        return trains.add(new Train(name, rollingComponent));
     }
 
     public boolean createTrain(String name, List<RollingComponent> rollingComponents) {
-        return false;
+        return trains.add(new Train(name, rollingComponents));
     }
 
-    public boolean removeTrain(Train train) {
-        return false;
+    public boolean removeTrain(String key) {
+        Train train = getTrain(key);
+        return trains.remove(train);
     }
+
+    /*
+    public boolean addRollingComponent(String name, RollingComponent rollingComponent) {
+        Train train = getTrain(name);
+        return train.addTrainRollingComponent(rollingComponent);
+    }
+
+    public boolean removeRollingComponent(String name, RollingComponent rollingComponent) {
+        Train train = getTrain(name);
+        return train.removeTrainRollingComponent(rollingComponent);
+    }
+    */
 }

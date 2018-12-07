@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Train {
-    private String name;
-    private List<RollingComponent> rollingComponents = new ArrayList<RollingComponent>();
+    private String key;
+    private List<RollingComponent> rollingComponents = new ArrayList<>();
 
     public Train(String name) {
-        this.name = name;
+        this.key = name;
     }
 
     public Train(String name, RollingComponent rollingComponent) {
@@ -23,27 +23,36 @@ public class Train {
         this.rollingComponents = rollingComponents;
     }
 
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
 
-    /*
-    public TrainIterator<RollingComponent> getIterator() {
+    public RollingComponent getTrainRollingComponent(String key) {
+        TrainIterator trainIterator = createIterator();
+        while (trainIterator.hasNext()) {
+            RollingComponent rollingComponent = trainIterator.getNext();
+            if (rollingComponent.getKey().equalsIgnoreCase(key)) {
+                return rollingComponent;
+            }
+        }
+
         return null;
     }
-    */
 
     public List<RollingComponent> getTrainRollingComponents() {
         return rollingComponents;
     }
 
-    public void addTrainRollingComponent(RollingComponent rollingComponent) {
-        rollingComponents.add(rollingComponent);
+    public boolean addTrainRollingComponent(RollingComponent rollingComponent) {
+        return rollingComponents.add(rollingComponent);
     }
 
-    public void removeTrainRollingComponent(RollingComponent rollingComponent) {
-        rollingComponents.remove(rollingComponent);
+    public boolean removeTrainRollingComponent(String key) {
+        RollingComponent rollingComponent = getTrainRollingComponent(key);
+        return rollingComponents.remove(rollingComponent);
     }
 
-
+    public TrainIterator createIterator() {
+        return new TrainIterator(this);
+    }
 }
