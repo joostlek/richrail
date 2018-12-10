@@ -35,7 +35,7 @@ public class TrainFacade {
     }
 
     private boolean createTrain(Train train) {
-        if (trains.contains(train.getKey())) {
+        if (trains.contains(train)) {
             return false;
         }
 
@@ -121,7 +121,7 @@ public class TrainFacade {
     }
 
     private boolean createRollingComponent(RollingComponent rollingComponent) {
-        if (rollingComponents.contains(rollingComponent.getKey())) {
+        if (rollingComponents.contains(rollingComponent)) {
             return false;
         }
 
