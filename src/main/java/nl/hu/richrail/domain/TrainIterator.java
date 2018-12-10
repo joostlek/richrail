@@ -15,7 +15,7 @@ public class TrainIterator {
 
     private void lazyLoad() {
         if (rollingComponents == null) {
-            rollingComponents = train.getTrainRollingComponents();
+            rollingComponents = train.getRollingComponentsFromTrain();
         }
     }
 

@@ -7,11 +7,8 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
     private String imagePath;
     private boolean hasCoals;
 
-    public void setKey(String key) {
+    public LocomotiveBuilder(String key, String imagePath) {
         this.key = key;
-    }
-
-    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
@@ -19,6 +16,7 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
         this.hasCoals = hasCoals;
     }
 
+    @Override
     public Locomotive getBuildResult() {
         return new Locomotive(key, imagePath, hasCoals);
     }

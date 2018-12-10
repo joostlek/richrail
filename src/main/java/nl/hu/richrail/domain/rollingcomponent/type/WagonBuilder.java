@@ -8,11 +8,8 @@ public class WagonBuilder implements RollingComponentBuilder {
     private int seatPlaces;
     private int standingPlaces;
 
-    public void setKey(String key) {
+    public WagonBuilder(String key, String imagePath) {
         this.key = key;
-    }
-
-    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
@@ -24,6 +21,7 @@ public class WagonBuilder implements RollingComponentBuilder {
         this.standingPlaces = standingPlaces;
     }
 
+    @Override
     public Wagon getBuildResult() {
         return new Wagon(key, imagePath, seatPlaces, standingPlaces);
     }
