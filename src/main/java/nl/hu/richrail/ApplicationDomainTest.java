@@ -1,14 +1,35 @@
 package nl.hu.richrail;
- 
+
 import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.exceptions.NoPropertiesSetException;
 import nl.hu.richrail.services.TrainFacade;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 public class ApplicationDomainTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String path = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "app.properties";
+        Properties appProps = new Properties();
+        appProps.load(new FileInputStream(path));
+        if (appProps.get("DB.HOST").equals("")) {
+            appProps.clear();
+            Map<String, String> environment = System.getenv();
+            if (!environment.containsKey("DB.HOST") || environment.get("DB.HOST").equals("")) {
+                throw new NoPropertiesSetException();
+            } else {
+                appProps.setProperty("DB.HOST", environment.get("DB.HOST"));
+                appProps.setProperty("DB.USER", environment.get("DB.USER"));
+                appProps.setProperty("DB.PASS", environment.get("DB.PASS"));
+                appProps.setProperty("DB.PORT", environment.get("DB.PORT"));
+            }
+        }
+
         TrainFacade trainService = new TrainFacade();
 
         // create rollingcomponent locomotive
