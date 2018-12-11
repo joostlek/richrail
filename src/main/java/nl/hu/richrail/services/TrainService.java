@@ -5,7 +5,7 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 import java.util.List;
 
-public interface TrainServiceInterface {
+public interface TrainService {
     Train getTrain(String name);
     List<Train> getTrains();
     boolean createTrain(String name);
