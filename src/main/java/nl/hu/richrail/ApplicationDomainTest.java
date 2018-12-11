@@ -12,13 +12,13 @@ public class ApplicationDomainTest {
         TrainFacade trainService = new TrainFacade();
 
         // create rollingcomponent locomotive
-        trainService.createRollingComponentLocomotive("Locomotive 1", "locomotive-one.png", true);
+        trainService.createRollingComponentLocomotive("Locomotive 1", true);
 
         // create rollingcomponent wagons
-        trainService.createRollingComponentWagon("Wagon 1", "wagon-one.png", 40, 110);
-        trainService.createRollingComponentWagon("Wagon 2", "wagon-two.png", 50, 100);
-        trainService.createRollingComponentWagon("Wagon 3", "wagon-three.png", 60, 90);
-        trainService.createRollingComponentWagon("Wagon 4", "wagon-four.png", 70, 80);
+        trainService.createRollingComponentWagon("Wagon 1", 40, 110);
+        trainService.createRollingComponentWagon("Wagon 2", 50, 100);
+        trainService.createRollingComponentWagon("Wagon 3", 60, 90);
+        trainService.createRollingComponentWagon("Wagon 4", 70, 80);
 
         // remove rollingcomponent
         trainService.removeRollingComponent("Wagon 4");
