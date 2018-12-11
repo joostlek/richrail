@@ -2,6 +2,9 @@ sudo: required
 language: java
 jdk: openjdk10
 
+services:
+  - postgresql
+
 git:
   depth: 9999999
 
