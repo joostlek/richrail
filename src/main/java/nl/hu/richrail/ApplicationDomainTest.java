@@ -26,9 +26,9 @@ public class ApplicationDomainTest {
                 appProps.setProperty("DB.HOST", environment.get("DB.HOST"));
                 appProps.setProperty("DB.USER", environment.get("DB.USER"));
                 appProps.setProperty("DB.PASS", environment.get("DB.PASS"));
-                appProps.setProperty("DB.PORT", environment.get("DB.PORT"));
             }
         }
+        System.setProperties(appProps);
 
         TrainFacade trainService = new TrainFacade();
 
