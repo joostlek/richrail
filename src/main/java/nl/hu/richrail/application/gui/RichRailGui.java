@@ -1,12 +1,12 @@
-package nl.hu.richrail;
+package nl.hu.richrail.application.gui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Application {
+public class RichRailGui {
 
-    public static void main(String[] args) {
+    public static void start() {
         // Create frame.
         JFrame frame = new JFrame();
 
