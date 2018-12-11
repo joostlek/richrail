@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 // TODO: implement DAO
-public class TrainFacade {
+public class TrainFacade implements TrainService {
     private List<Train> trains = new ArrayList<>();
     private List<RollingComponent> rollingComponents = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class TrainFacade {
         }
 
         if (trains.add(train)) {
-            logger.log(Level.INFO, "Created train: " + train.toString());
+            logger.log(Level.INFO, "Created: " + train.toString());
             return true;
         }
 
@@ -133,7 +133,9 @@ public class TrainFacade {
         return false;
     }
 
-    public boolean createRollingComponentLocomotive(String key, String imagePath, boolean hasCoals) {
+    public boolean createRollingComponentLocomotive(String key, boolean hasCoals) {
+        String imagePath = "";
+
         if (key == null || imagePath == null) {
             return false;
         }
@@ -145,7 +147,9 @@ public class TrainFacade {
         return createRollingComponent(locomotiveBuilder.getBuildResult());
     }
 
-    public boolean createRollingComponentWagon(String key, String imagePath, int seatPlaces, int standingPlaces) {
+    public boolean createRollingComponentWagon(String key, int seatPlaces, int standingPlaces) {
+        String imagePath = "";
+
         if (key == null || imagePath == null) {
             return false;
         }
