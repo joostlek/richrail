@@ -33,13 +33,13 @@ public class ApplicationDomainTest {
         TrainFacade trainService = new TrainFacade();
 
         // create rollingcomponent locomotive
-        trainService.createRollingComponentLocomotive("Locomotive 1", true);
+        trainService.createRollingComponentLocomotive("Locomotive 1");
 
         // create rollingcomponent wagons
-        trainService.createRollingComponentWagon("Wagon 1", 40, 110);
-        trainService.createRollingComponentWagon("Wagon 2", 50, 100);
-        trainService.createRollingComponentWagon("Wagon 3", 60, 90);
-        trainService.createRollingComponentWagon("Wagon 4", 70, 80);
+        trainService.createRollingComponentWagon("Wagon 1", 80);
+        trainService.createRollingComponentWagon("Wagon 2", 90);
+        trainService.createRollingComponentWagon("Wagon 3", 100);
+        trainService.createRollingComponentWagon("Wagon 4", 110);
 
         // remove rollingcomponent
         trainService.removeRollingComponent("Wagon 4");
@@ -66,25 +66,25 @@ public class ApplicationDomainTest {
         trainService.removeTrain("Another one hello world train");
 
         // remove wagon 1 from hello world train
-        RollingComponent rollingComponentWithPosition = trainService.getRollingComponentFromTrain("Hello world train", 3);
+        RollingComponent rollingComponentWithPosition = trainService.getRollingComponentFromTrain("Hello world train", "wagon 1");
         trainService.removeRollingComponentFromTrain("Hello world train", rollingComponentWithPosition);
 
         // print results
         System.out.println("\nAvailable rollingcomponents:");
         for (RollingComponent rollingComponent : trainService.getRollingComponents()) {
-            System.out.println(rollingComponent.getKey());
+            System.out.println(rollingComponent.getId());
         }
         System.out.println("\nCreated Trains " + trainService.getTrains().size() + ":");
         for (Train train : trainService.getTrains()) {
-            System.out.println("Naam: " + train.getKey() + ", Aantal rollingcomponents: " + train.getRollingComponentsFromTrain().size());
+            System.out.println("Naam: " + train.getId() + ", Aantal rollingcomponents: " + train.getRollingComponentsFromTrain().size());
             int i = 1;
             for (RollingComponent rollingComponent : train.getRollingComponentsFromTrain()) {
-                System.out.println(i + ": " + rollingComponent.getKey() + ", " + rollingComponent.getImagePath());
+                System.out.println(i + ": " + rollingComponent.getId() + ", " + rollingComponent.getImagePath());
                 i++;
             }
         }
 
         // other tests
-        System.out.println("\nOther tests:\nHello world train locomotive 1 imagePath: " + trainService.getRollingComponentFromTrain("Hello world train", 0).getImagePath());
+        System.out.println("\nOther tests:\nHello world train locomotive 1 imagePath: " + trainService.getRollingComponentFromTrain("Hello world train", "Locomotive 1").getImagePath());
     }
 }

@@ -28,7 +28,7 @@ public class TrainRepositoryLogger implements TrainRepositoryInterface {
 
     @Override
     public Train saveTrain(Train train) {
-        logger.log(Level.INFO, String.format("Save train %s", train.getKey()));
+        logger.log(Level.INFO, String.format("Save train %s", train.getId()));
         return trainRepository.saveTrain(train);
     }
 

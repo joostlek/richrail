@@ -6,19 +6,20 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import java.util.List;
 
 public interface TrainService {
-    Train getTrain(String name);
+    Train getTrain(String id);
     List<Train> getTrains();
-    boolean createTrain(String name);
+    boolean createTrain(String id);
     boolean removeTrain(String id);
+    int getTotalNumSeats(String id);
 
-    RollingComponent getRollingComponentFromTrain(String trainName, int position);
-    List<RollingComponent> getRollingComponentsFromTrain(String trainName);
-    boolean addRollingComponentToTrain(String trainName, RollingComponent rollingComponent);
-    boolean removeRollingComponentFromTrain(String trainName, RollingComponent rollingComponent);
+    RollingComponent getRollingComponentFromTrain(String trainId, String rollingComponentId);
+    List<RollingComponent> getRollingComponentsFromTrain(String trainId);
+    boolean addRollingComponentToTrain(String trainId, RollingComponent rollingComponent);
+    boolean removeRollingComponentFromTrain(String trainId, RollingComponent rollingComponent);
 
     RollingComponent getRollingComponent(String id);
     List<RollingComponent> getRollingComponents();
-    boolean createRollingComponentLocomotive(String id, boolean hasCoals);
-    boolean createRollingComponentWagon(String id, int seatPlaces, int standingPlaces);
+    boolean createRollingComponentLocomotive(String id);
+    boolean createRollingComponentWagon(String id, int numSeats);
     boolean removeRollingComponent(String id);
 }
