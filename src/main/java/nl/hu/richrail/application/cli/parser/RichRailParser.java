@@ -5,7 +5,7 @@ import nl.hu.richrail.services.TrainFacade;
 import parser.RichRailBaseListener;
 
 public class RichRailParser extends RichRailBaseListener {
-    private TrainFacade trainService = new TrainFacade();
+    private TrainFacade trainService = TrainFacade.getInstance();
 
     @Override
     public void enterNewtraincommand(parser.RichRailParser.NewtraincommandContext ctx) {

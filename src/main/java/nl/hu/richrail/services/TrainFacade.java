@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 
 // TODO: implement DAO
 public class TrainFacade implements TrainService {
+    private static TrainFacade instance;
+
     private List<Train> trains = new ArrayList<>();
     private List<RollingComponent> rollingComponents = new ArrayList<>();
 
@@ -140,7 +142,7 @@ public class TrainFacade implements TrainService {
     public boolean createRollingComponentLocomotive(String id) {
         String imagePath = "";
 
-        if (id == null || imagePath == null) {
+        if (id == null) {
             return false;
         }
 
@@ -152,7 +154,7 @@ public class TrainFacade implements TrainService {
     public boolean createRollingComponentWagon(String id, int numSeats) {
         String imagePath = "";
 
-        if (id == null || imagePath == null) {
+        if (id == null) {
             return false;
         }
 
@@ -172,5 +174,13 @@ public class TrainFacade implements TrainService {
         }
 
         return false;
+    }
+
+    public static TrainFacade getInstance() {
+        if (instance == null) {
+            instance = new TrainFacade();
+        }
+
+        return instance;
     }
 }

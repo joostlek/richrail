@@ -30,7 +30,7 @@ public class ApplicationDomainTest {
         }
         System.setProperties(appProps);
 
-        TrainFacade trainService = new TrainFacade();
+        TrainFacade trainService = TrainFacade.getInstance();
 
         // create rollingcomponent locomotive
         trainService.createRollingComponentLocomotive("Locomotive 1");
