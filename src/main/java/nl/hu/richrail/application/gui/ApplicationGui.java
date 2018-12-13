@@ -24,6 +24,8 @@ public class ApplicationGui extends ApplicationBase {
         button.setBounds(130, 100, 100, 40);
         button.setText("Hoi");
         button.addActionListener(e -> ((JButton) e.getSource()).setText("Doei"));
+
+        add(button);
     }
 
 }

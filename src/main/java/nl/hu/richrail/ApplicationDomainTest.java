@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class ApplicationDomainTest {
     public static void main(String[] args) throws IOException {
-        String path = Thread.currentThread().getContextClassLoader().getResource("").getPath() + "app.properties";
+        String path = ApplicationDomainTest.class.getResource("/").getPath() + "app.properties";
         Properties appProps = new Properties();
         appProps.load(new FileInputStream(path));
         if (appProps.get("DB.HOST").equals("")) {
@@ -28,6 +28,7 @@ public class ApplicationDomainTest {
                 appProps.setProperty("DB.PASS", environment.get("DB.PASS"));
             }
         }
+        
         System.setProperties(appProps);
 
         TrainFacade trainService = TrainFacade.getInstance();
