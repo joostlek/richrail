@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Train {
-    private String key;
+    private String id;
     private List<RollingComponent> rollingComponents = new ArrayList<>();
 
     public Train(String name) {
-        this.key = name;
+        this.id = name;
     }
 
     public Train(String name, RollingComponent rollingComponent) {
@@ -24,12 +24,22 @@ public class Train {
         this.rollingComponents = rollingComponents;
     }
 
-    public String getKey() {
-        return key;
+    public String getId() {
+        return id;
     }
 
-    public RollingComponent getRollingComponentFromTrain(int position) {
-        return rollingComponents.get(position);
+    public RollingComponent getRollingComponentFromTrain(String rollingComponentId) {
+        TrainIterator trainIterator = createIterator();
+
+        while (trainIterator.hasNext()) {
+            RollingComponent rollingComponent = trainIterator.getNext();
+
+            if (rollingComponent.getId().equals(rollingComponentId)) {
+                return rollingComponent;
+            }
+        }
+
+        return null;
     }
 
     public List<RollingComponent> getRollingComponentsFromTrain() {
@@ -44,32 +54,19 @@ public class Train {
         return rollingComponents.remove(rollingComponent);
     }
 
-    public int getTotalSeatPlaces() {
+    public int getTotalNumSeats() {
         TrainIterator trainIterator = createIterator();
-        int totalSeatPlaces = 0;
+        int totalNumSeats = 0;
 
         while (trainIterator.hasNext()) {
             RollingComponent rollingComponent = trainIterator.getNext();
+
             if (rollingComponent instanceof Wagon) {
-                totalSeatPlaces += ((Wagon) rollingComponent).getSeatPlaces();
+                totalNumSeats += ((Wagon) rollingComponent).getNumSeats();
             }
         }
 
-        return totalSeatPlaces;
-    }
-
-    public int getTotalStandingPlaces() {
-        TrainIterator trainIterator = createIterator();
-        int totalStandingPlaces = 0;
-
-        while (trainIterator.hasNext()) {
-            RollingComponent rollingComponent = trainIterator.getNext();
-            if (rollingComponent instanceof Wagon) {
-                totalStandingPlaces += ((Wagon) rollingComponent).getStandingPlaces();
-            }
-        }
-
-        return totalStandingPlaces;
+        return totalNumSeats;
     }
 
     public TrainIterator createIterator() {
@@ -78,6 +75,12 @@ public class Train {
 
     @Override
     public String toString() {
-        return "Train \"" + key + "\" with " + rollingComponents.size() + " rollingcomponents.";
+        StringBuilder stringBuilder = new StringBuilder("Train " + id);
+
+        if (rollingComponents.size() > 0) {
+            stringBuilder.append(" with " + rollingComponents.size() + " rollingcomponents");
+        }
+
+        return stringBuilder.toString();
     }
 }

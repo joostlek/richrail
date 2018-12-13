@@ -22,7 +22,7 @@ public class TrainFacade implements TrainService {
      */
     public Train getTrain(String name) {
         for (Train train : trains) {
-            if (train.getKey().equalsIgnoreCase(name)) {
+            if (train.getId().equalsIgnoreCase(name)) {
                 return train;
             }
         }
@@ -59,8 +59,8 @@ public class TrainFacade implements TrainService {
         return createTrain(new Train(name, rollingComponents));
     }
 
-    public boolean removeTrain(String key) {
-        Train train = getTrain(key);
+    public boolean removeTrain(String id) {
+        Train train = getTrain(id);
 
         if (trains.remove(train)) {
             logger.log(Level.INFO, "Removed train: " + train.toString());
@@ -70,19 +70,23 @@ public class TrainFacade implements TrainService {
         return false;
     }
 
+    public int getTotalNumSeats(String id) {
+        return getTrain(id).getTotalNumSeats();
+    }
+
     /*
      * Rolling Components from Train services
      */
-    public RollingComponent getRollingComponentFromTrain(String trainName, int position) {
-        return getTrain(trainName).getRollingComponentFromTrain(position);
+    public RollingComponent getRollingComponentFromTrain(String trainId, String rollingComponentId) {
+        return getTrain(trainId).getRollingComponentFromTrain(rollingComponentId);
     }
 
-    public List<RollingComponent> getRollingComponentsFromTrain(String trainName) {
-        return getTrain(trainName).getRollingComponentsFromTrain();
+    public List<RollingComponent> getRollingComponentsFromTrain(String trainId) {
+        return getTrain(trainId).getRollingComponentsFromTrain();
     }
 
-    public boolean addRollingComponentToTrain(String trainName, RollingComponent rollingComponent) {
-        Train train = getTrain(trainName);
+    public boolean addRollingComponentToTrain(String trainId, RollingComponent rollingComponent) {
+        Train train = getTrain(trainId);
 
         if (train.addRollingComponentToTrain(rollingComponent)) {
             logger.log(Level.INFO, "Add rollingcomponent to train: " + train.toString());
@@ -92,8 +96,8 @@ public class TrainFacade implements TrainService {
         return false;
     }
 
-    public boolean removeRollingComponentFromTrain(String trainName, RollingComponent rollingComponent) {
-        Train train = getTrain(trainName);
+    public boolean removeRollingComponentFromTrain(String trainId, RollingComponent rollingComponent) {
+        Train train = getTrain(trainId);
 
         if (train.removeRollingComponentFromTrain(rollingComponent)) {
             logger.log(Level.INFO, "Remove rollingcomponent from train: " + train.toString());
@@ -106,9 +110,9 @@ public class TrainFacade implements TrainService {
     /*
      * Rolling Component services
      */
-    public RollingComponent getRollingComponent(String key) {
+    public RollingComponent getRollingComponent(String id) {
         for (RollingComponent rollingComponent : rollingComponents) {
-            if (rollingComponent.getKey().equalsIgnoreCase(key)) {
+            if (rollingComponent.getId().equalsIgnoreCase(id)) {
                 return rollingComponent.clone();
             }
         }
@@ -133,37 +137,34 @@ public class TrainFacade implements TrainService {
         return false;
     }
 
-    public boolean createRollingComponentLocomotive(String key, boolean hasCoals) {
+    public boolean createRollingComponentLocomotive(String id) {
         String imagePath = "";
 
-        if (key == null || imagePath == null) {
+        if (id == null || imagePath == null) {
             return false;
         }
 
-        LocomotiveBuilder locomotiveBuilder = new LocomotiveBuilder(key, imagePath);
-
-        locomotiveBuilder.setLocomotiveHasCoals(hasCoals);
+        LocomotiveBuilder locomotiveBuilder = new LocomotiveBuilder(id, imagePath);
 
         return createRollingComponent(locomotiveBuilder.getBuildResult());
     }
 
-    public boolean createRollingComponentWagon(String key, int seatPlaces, int standingPlaces) {
+    public boolean createRollingComponentWagon(String id, int numSeats) {
         String imagePath = "";
 
-        if (key == null || imagePath == null) {
+        if (id == null || imagePath == null) {
             return false;
         }
 
-        WagonBuilder wagonBuilder = new WagonBuilder(key, imagePath);
+        WagonBuilder wagonBuilder = new WagonBuilder(id, imagePath);
 
-        wagonBuilder.setSeatPlaces(seatPlaces);
-        wagonBuilder.setStandingPlaces(standingPlaces);
+        wagonBuilder.setNumSeats(numSeats);
 
         return createRollingComponent(wagonBuilder.getBuildResult());
     }
 
-    public boolean removeRollingComponent(String key) {
-        RollingComponent rollingComponent = getRollingComponent(key);
+    public boolean removeRollingComponent(String id) {
+        RollingComponent rollingComponent = getRollingComponent(id);
 
         if (rollingComponents.remove(rollingComponent)) {
             logger.log(Level.INFO, "Romoved rollingcomponent: " + rollingComponent.toString());

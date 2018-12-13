@@ -3,30 +3,24 @@ package nl.hu.richrail.domain.rollingcomponent.type;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 public class Wagon extends RollingComponent {
-    private int seatPlaces;
-    private int standingPlaces;
+    private int numSeats;
 
-    public Wagon(String key, String imagePath, int seatPlaces, int standingPlaces) {
-        super(key, imagePath);
-        this.seatPlaces = seatPlaces;
-        this.standingPlaces = standingPlaces;
+    public Wagon(String id, String imagePath, int numSeats) {
+        super(id, imagePath);
+        this.numSeats = numSeats;
     }
 
-    public int getSeatPlaces() {
-        return seatPlaces;
-    }
-
-    public int getStandingPlaces() {
-        return standingPlaces;
+    public int getNumSeats() {
+        return numSeats;
     }
 
     @Override
     public RollingComponent clone() {
-        return new Wagon(this.getKey(), this.getImagePath(), seatPlaces, standingPlaces);
+        return new Wagon(this.getId(), this.getImagePath(), numSeats);
     }
 
     @Override
     public String toString() {
-        return "Wagon \"" + this.getKey() + "\" with " + seatPlaces + " seats and " + standingPlaces + " standing places.";
+        return "Wagon \"" + this.getId() + "\" with " + numSeats + " seats";
     }
 }

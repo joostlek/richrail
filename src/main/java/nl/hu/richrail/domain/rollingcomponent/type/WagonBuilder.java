@@ -3,26 +3,21 @@ package nl.hu.richrail.domain.rollingcomponent.type;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilder;
 
 public class WagonBuilder implements RollingComponentBuilder {
-    private String key;
+    private String id;
     private String imagePath;
-    private int seatPlaces;
-    private int standingPlaces;
+    private int numSeats;
 
-    public WagonBuilder(String key, String imagePath) {
-        this.key = key;
+    public WagonBuilder(String id, String imagePath) {
+        this.id = id;
         this.imagePath = imagePath;
     }
 
-    public void setSeatPlaces(int seatPlaces) {
-        this.seatPlaces = seatPlaces;
-    }
-
-    public void setStandingPlaces(int standingPlaces) {
-        this.standingPlaces = standingPlaces;
+    public void setNumSeats(int numSeats) {
+        this.numSeats = numSeats;
     }
 
     @Override
     public Wagon getBuildResult() {
-        return new Wagon(key, imagePath, seatPlaces, standingPlaces);
+        return new Wagon(id, imagePath, numSeats);
     }
 }
