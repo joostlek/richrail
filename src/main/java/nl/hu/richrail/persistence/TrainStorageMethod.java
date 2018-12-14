@@ -14,8 +14,4 @@ public interface TrainStorageMethod {
 
     List<Train> getAllTrains();
 
-    boolean open();
-
-    void close();
-
 }
