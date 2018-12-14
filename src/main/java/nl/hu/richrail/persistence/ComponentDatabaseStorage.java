@@ -46,13 +46,14 @@ public class ComponentDatabaseStorage implements ComponentStorageMethod {
     public RollingComponent getComponent(String key) {
         try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement("SELECT key, seats, train_key FROM traincomponent WHERE key = ?")) {
             stmt.setString(1, key);
-            ResultSet resultSet = stmt.executeQuery();
-            if (resultSet.next()) {
-                String componentKey = resultSet.getString("KEY");
-                int sears = resultSet.getInt("SEATS");
-                String componentTrain = resultSet.getString("TRAIN_KEY");
-            } else {
-                throw new ComponentNotFoundException(key);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    String componentKey = resultSet.getString("KEY");
+                    int sears = resultSet.getInt("SEATS");
+                    String componentTrain = resultSet.getString("TRAIN_KEY");
+                } else {
+                    throw new ComponentNotFoundException(key);
+                }
             }
             return null;
         } catch (SQLException e) {
