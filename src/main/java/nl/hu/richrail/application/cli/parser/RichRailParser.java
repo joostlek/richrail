@@ -1,11 +1,11 @@
 package nl.hu.richrail.application.cli.parser;
 
 import nl.hu.richrail.domain.rollingcomponent.type.Wagon;
-import nl.hu.richrail.services.TrainFacade;
+import nl.hu.richrail.services.TrainService;
 import parser.RichRailBaseListener;
 
 public class RichRailParser extends RichRailBaseListener {
-    private TrainFacade trainService = TrainFacade.getInstance();
+    private TrainService trainService = TrainService.getInstance();
 
     @Override
     public void enterNewtraincommand(parser.RichRailParser.NewtraincommandContext ctx) {
@@ -58,9 +58,5 @@ public class RichRailParser extends RichRailBaseListener {
     @Override
     public void enterRemcommand(parser.RichRailParser.RemcommandContext ctx) {
         trainService.removeRollingComponentFromTrain(ctx.ID(1).getText(), trainService.getRollingComponentFromTrain(ctx.ID(1).getText(), ctx.ID(0).getText()));
-    }
-
-    public String getResult() {
-        return null;
     }
 }

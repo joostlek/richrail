@@ -1,6 +1,6 @@
 package nl.hu.richrail.application;
 
-import nl.hu.richrail.application.cli.ApplicationCli;
+import nl.hu.richrail.application.cli.ApplicationCliGui;
 import nl.hu.richrail.application.gui.ApplicationGui;
 
 import javax.swing.*;
@@ -42,7 +42,7 @@ public class ApplicationPicker extends ApplicationBase {
 
         switch (app) {
             case CLI:
-                application = new ApplicationCli();
+                application = new ApplicationCliGui();
                 break;
 
             case GUI:
