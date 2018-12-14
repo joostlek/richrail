@@ -14,9 +14,6 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
 
     private final Logger logger = Logger.getLogger(TrainDatabaseStorage.class.getName());
 
-    public TrainDatabaseStorage() {
-    }
-
     @Override
     public void saveTrain(Train train) {
         try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement("INSERT INTO trains(key) VALUES (?)")) {

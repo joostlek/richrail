@@ -34,9 +34,7 @@ public class DatabaseConnection {
     }
 
     static DatabaseConnection getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DatabaseConnection();
-        } else if (instance.getConnection().isClosed()) {
+        if (instance == null || instance.getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
         return instance;

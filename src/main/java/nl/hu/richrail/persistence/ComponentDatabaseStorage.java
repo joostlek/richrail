@@ -15,9 +15,6 @@ public class ComponentDatabaseStorage implements ComponentStorageMethod {
 
     private final Logger logger = Logger.getLogger(ComponentDatabaseStorage.class.getName());
 
-    public ComponentDatabaseStorage() {
-    }
-
     @Override
     public void saveComponent(RollingComponent rollingComponent) {
         try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement("INSERT INTO traincomponent(key, seats, train_key) VALUES (?, ?, NULL)")) {
