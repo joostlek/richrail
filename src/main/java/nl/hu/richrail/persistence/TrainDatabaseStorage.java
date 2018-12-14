@@ -6,8 +6,12 @@ import nl.hu.richrail.exceptions.DatabaseCredentialsException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TrainDatabaseStorage implements TrainStorageMethod {
+
+    private final Logger logger = Logger.getLogger(TrainDatabaseStorage.class.getName());
 
     private final DatabaseConfig config;
 
@@ -24,25 +28,23 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
 
     @Override
     public void saveTrain(Train train) {
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement("INSERT INTO trains(key) VALUES (?)");
+        try (PreparedStatement stmt = this.connection.prepareStatement("INSERT INTO trains(key) VALUES (?)")) {
             stmt.setString(1, train.getId());
             stmt.execute();
             this.connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage());
         }
     }
 
     @Override
     public void deleteTrain(String key) {
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM trains WHERE key = ?");
+        try (PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM trains WHERE key = ?")) {
             stmt.setString(1, key);
             stmt.execute();
             this.connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -54,17 +56,16 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
     @Override
     public List<Train> getAllTrains() {
         ArrayList<Train> trains = new ArrayList<>();
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT key FROM trains");
+        try (PreparedStatement stmt = this.connection.prepareStatement("SELECT key FROM trains")) {
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
                 String key = result.getString("KEY");
                 Train train = new Train(key);
                 trains.add(train);
             }
-            stmt.close();
+            result.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage());
         }
         return trains;
     }
