@@ -16,7 +16,7 @@ public class TrainStorageLogger implements TrainStorageMethod {
 
     @Override
     public Train getTrain(String name) {
-        logger.log(Level.INFO, String.format("Get train %s", name));
+        logger.log(Level.INFO, "Get train {}", name);
         return trainStorage.getTrain(name);
     }
 
@@ -28,13 +28,13 @@ public class TrainStorageLogger implements TrainStorageMethod {
 
     @Override
     public void saveTrain(Train train) {
-        logger.log(Level.INFO, String.format("Save train %s", train.getId()));
+        logger.log(Level.INFO, "Save train {}", train.getId());
         trainStorage.saveTrain(train);
     }
 
     @Override
     public void deleteTrain(String name) {
-        logger.log(Level.INFO, String.format("Delete train %s", name));
+        logger.log(Level.INFO, "Delete train %s", name);
         trainStorage.deleteTrain(name);
     }
 }

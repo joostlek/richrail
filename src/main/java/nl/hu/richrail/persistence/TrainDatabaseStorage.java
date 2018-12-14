@@ -13,12 +13,9 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
 
     private final Logger logger = Logger.getLogger(TrainDatabaseStorage.class.getName());
 
-    private final DatabaseConfig config;
-
     private final Connection connection;
 
     public TrainDatabaseStorage(DatabaseConfig config) {
-        this.config = config;
         try {
             this.connection = DriverManager.getConnection(config.host, config.username, config.password);
         } catch (SQLException e) {
