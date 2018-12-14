@@ -7,9 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    public static Connection getConnection() {
+    private DatabaseConnection() {
+    }
+
+    public static Connection getConnection(DatabaseConfig config) {
         try {
-            return DriverManager.getConnection("jdbc:" + System.getProperty("DB.HOST"), System.getProperty("DB.USER"), System.getProperty("DB.PASS"));
+            return DriverManager.getConnection(config.host, config.username, config.password);
         } catch (SQLException e) {
             throw new DatabaseCredentialsException();
         }
