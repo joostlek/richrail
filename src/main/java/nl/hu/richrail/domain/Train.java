@@ -14,16 +14,6 @@ public class Train {
         this.id = name;
     }
 
-    public Train(String name, RollingComponent rollingComponent) {
-        this(name);
-        rollingComponents.add(rollingComponent);
-    }
-
-    public Train(String name, List<RollingComponent> rollingComponents) {
-        this(name);
-        this.rollingComponents = rollingComponents;
-    }
-
     public String getId() {
         return id;
     }
