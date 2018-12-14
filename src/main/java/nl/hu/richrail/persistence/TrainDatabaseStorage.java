@@ -56,14 +56,13 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
     @Override
     public List<Train> getAllTrains() {
         ArrayList<Train> trains = new ArrayList<>();
-        try (PreparedStatement stmt = this.connection.prepareStatement("SELECT key FROM trains")) {
-            ResultSet result = stmt.executeQuery();
+        try (PreparedStatement stmt = this.connection.prepareStatement("SELECT key FROM trains");
+             ResultSet result = stmt.executeQuery()) {
             while (result.next()) {
                 String key = result.getString("KEY");
                 Train train = new Train(key);
                 trains.add(train);
             }
-            result.close();
         } catch (SQLException e) {
             logger.log(Level.WARNING, e.getMessage());
         }
