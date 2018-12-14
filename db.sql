@@ -14,5 +14,6 @@ create table traincomponent
   train_key varchar(5)
     constraint traincomponent_trains_key_fk
       references trains
+      on delete set null
 );
 
