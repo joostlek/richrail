@@ -29,11 +29,11 @@ public class DatabaseConnection {
         }
     }
 
-    public Connection getConnection() {
+    Connection getConnection() {
         return connection;
     }
 
-    public static DatabaseConnection getInstance() throws SQLException {
+    static DatabaseConnection getInstance() throws SQLException {
         if (instance == null) {
             instance = new DatabaseConnection();
         } else if (instance.getConnection().isClosed()) {
