@@ -25,4 +25,14 @@ public class TrainFileStorage implements TrainStorageMethod {
     public List<Train> getAllTrains() {
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean open() {
+        return false;
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException();
+    }
 }

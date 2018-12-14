@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class TrainStorageLogger implements TrainStorageMethod {
     private TrainStorageMethod trainStorage;
-    private Logger logger = Logger.getLogger(TrainStorageMethod.class.getName());
+    private Logger logger = Logger.getLogger(TrainStorageLogger.class.getName());
 
     public TrainStorageLogger(TrainStorageMethod trainStorage) {
         this.trainStorage = trainStorage;
@@ -36,5 +36,17 @@ public class TrainStorageLogger implements TrainStorageMethod {
     public void deleteTrain(String name) {
         logger.log(Level.INFO, "Delete train {0}", name);
         trainStorage.deleteTrain(name);
+    }
+
+    @Override
+    public boolean open() {
+        logger.log(Level.INFO, "Open connection");
+        return trainStorage.open();
+    }
+
+    @Override
+    public void close() {
+        logger.log(Level.INFO, "Close connection");
+        trainStorage.close();
     }
 }

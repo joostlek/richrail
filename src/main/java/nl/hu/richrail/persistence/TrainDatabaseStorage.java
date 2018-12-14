@@ -13,14 +13,12 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
 
     private final Logger logger = Logger.getLogger(TrainDatabaseStorage.class.getName());
 
-    private final Connection connection;
+    private final DatabaseConfig config;
+
+    private Connection connection;
 
     public TrainDatabaseStorage(DatabaseConfig config) {
-        try {
-            this.connection = DriverManager.getConnection(config.host, config.username, config.password);
-        } catch (SQLException e) {
-            throw new DatabaseCredentialsException();
-        }
+        this.config = config;
     }
 
     @Override
@@ -64,5 +62,26 @@ public class TrainDatabaseStorage implements TrainStorageMethod {
             logger.log(Level.WARNING, e.getMessage());
         }
         return trains;
+    }
+
+    @Override
+    public boolean open() {
+        try {
+            this.connection = DriverManager.getConnection(config.host, config.username, config.password);
+            return this.connection.isValid(3600);
+        } catch (SQLException e) {
+            throw new DatabaseCredentialsException();
+        }
+    }
+
+    @Override
+    public void close() {
+        try {
+            if (this.connection != null) {
+                this.connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
