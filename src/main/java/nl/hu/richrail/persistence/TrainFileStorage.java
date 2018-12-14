@@ -4,19 +4,19 @@ import nl.hu.richrail.domain.Train;
 
 import java.util.List;
 
-public class FileStorage implements StorageMethod {
+public class TrainFileStorage implements TrainStorageMethod {
     @Override
-    public void saveTrain() {
+    public void saveTrain(Train train) {
 
     }
 
     @Override
-    public void deleteTrain(Train train) {
+    public void deleteTrain(String key) {
 
     }
 
     @Override
-    public Train getTrain(int id) {
+    public Train getTrain(String key) {
         return null;
     }
 

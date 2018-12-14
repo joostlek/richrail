@@ -4,13 +4,13 @@ import nl.hu.richrail.domain.Train;
 
 import java.util.List;
 
-public interface StorageMethod {
+public interface TrainStorageMethod {
 
-    void saveTrain();
+    void saveTrain(Train train);
 
-    void deleteTrain(Train train);
+    void deleteTrain(String key);
 
-    Train getTrain(int id);
+    Train getTrain(String key);
 
     List<Train> getAllTrains();
 
