@@ -20,6 +20,11 @@ public class ApplicationPicker extends ApplicationBase {
     }
 
     @Override
+    protected boolean isWindowResizable() {
+        return false;
+    }
+
+    @Override
     protected void setupWindow() {
         JPanel body = new JPanel();
         JButton buttonGui = new JButton("Grafische gebruikers interface");

@@ -2,8 +2,7 @@ package nl.hu.richrail.application.gui;
 
 import nl.hu.richrail.application.ApplicationBase;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
 
 public class ApplicationGui extends ApplicationBase {
 
@@ -14,18 +13,19 @@ public class ApplicationGui extends ApplicationBase {
 
     @Override
     protected Dimension getWindowSize() {
-        return new Dimension(400, 300);
+        return new Dimension(800, 400);
+    }
+
+    @Override
+    protected boolean isWindowResizable() {
+        return true;
     }
 
     @Override
     protected void setupWindow() {
-        JButton button = new JButton();
+        ApplicationGuiForm form = new ApplicationGuiForm();
 
-        button.setBounds(130, 100, 100, 40);
-        button.setText("Hoi");
-        button.addActionListener(e -> ((JButton) e.getSource()).setText("Doei"));
-
-        add(button);
+        setContentPane(form.$$$getRootComponent$$$());
     }
 
 }

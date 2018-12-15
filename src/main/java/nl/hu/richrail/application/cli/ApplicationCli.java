@@ -20,6 +20,11 @@ public class ApplicationCli extends ApplicationBase {
     }
 
     @Override
+    protected boolean isWindowResizable() {
+        return false;
+    }
+
+    @Override
     protected void setupWindow() {
         TrainService trainService = TrainService.getInstance();
 

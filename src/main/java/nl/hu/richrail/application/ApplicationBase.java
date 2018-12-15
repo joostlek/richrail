@@ -9,6 +9,8 @@ public abstract class ApplicationBase extends JFrame {
 
     protected abstract Dimension getWindowSize();
 
+    protected abstract boolean isWindowResizable();
+
     protected abstract void setupWindow();
 
     public void createAndShow() {
@@ -19,7 +21,7 @@ public abstract class ApplicationBase extends JFrame {
         setMinimumSize(getWindowSize());
         setPreferredSize(getWindowSize());
         setTitle(getWindowTitle());
-        setResizable(false);
+        setResizable(isWindowResizable());
 
         // Center.
         setLocationRelativeTo(null);
