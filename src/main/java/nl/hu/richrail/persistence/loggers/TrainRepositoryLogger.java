@@ -24,15 +24,21 @@ public class TrainRepositoryLogger implements TrainRepository {
     }
 
     @Override
+    public boolean hasTrain(String key) {
+        logger.log(Level.INFO, "Has train {0}", key);
+        return this.repository.hasTrain(key);
+    }
+
+    @Override
     public List<Train> getAllTrains() {
         logger.log(Level.INFO, "Get all trains");
         return this.repository.getAllTrains();
     }
 
     @Override
-    public void saveTrain(Train train) {
+    public Train saveTrain(Train train) {
         logger.log(Level.INFO, "Save train {0}", train.getKey());
-        this.repository.saveTrain(train);
+        return this.repository.saveTrain(train);
     }
 
     @Override

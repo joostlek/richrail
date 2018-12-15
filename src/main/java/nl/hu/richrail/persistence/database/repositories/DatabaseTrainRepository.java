@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,15 +25,18 @@ public class DatabaseTrainRepository implements TrainRepository {
     }
 
     @Override
-    public void saveTrain(Train train) {
+    public Train saveTrain(Train train) {
         try (Connection connection = this.connectionFactory.createConnection();
              PreparedStatement stmt = connection.prepareStatement("INSERT INTO trains(`key`) VALUES (?)")) {
             stmt.setString(1, train.getKey());
             stmt.execute();
 
             connection.commit();
+
+            return train;
         } catch (SQLException e) {
             logger.log(Level.WARNING, e.getMessage());
+            return null;
         }
     }
 
@@ -53,6 +57,12 @@ public class DatabaseTrainRepository implements TrainRepository {
     public Train getTrain(String key) {
         // TODO: Get from database.
         return new Train(key);
+    }
+
+    @Override
+    public boolean hasTrain(String key) {
+        // TODO: Implement.
+        return false;
     }
 
     @Override

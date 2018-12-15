@@ -6,6 +6,10 @@ import nl.hu.richrail.persistence.TrainRepository;
 
 public class MemoryStorage implements StorageMethod {
 
+    public MemoryStorage() {
+
+    }
+
     @Override
     public TrainRepository getTrainRepository() {
         return null;

@@ -8,7 +8,7 @@ import java.util.List;
 public class FileTrainRepository implements TrainRepository {
 
     @Override
-    public void saveTrain(Train train) {
+    public Train saveTrain(Train train) {
         throw new UnsupportedOperationException();
     }
 
@@ -20,6 +20,11 @@ public class FileTrainRepository implements TrainRepository {
     @Override
     public Train getTrain(String key) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean hasTrain(String key) {
+        return false;
     }
 
     @Override

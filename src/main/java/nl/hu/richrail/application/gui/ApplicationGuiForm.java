@@ -149,4 +149,44 @@ public class ApplicationGuiForm {
         return containerView;
     }
 
+    public JButton getButtonCreate() {
+        return buttonCreate;
+    }
+
+    public JTextField getNewTrainName() {
+        return newTrainName;
+    }
+
+    public JComboBox getAvailableTrains() {
+        return availableTrains;
+    }
+
+    public JLabel getSelectedTrain() {
+        return selectedTrain;
+    }
+
+    public JButton getButtonSelect() {
+        return buttonSelect;
+    }
+
+    public JButton getButtonDelete() {
+        return buttonDelete;
+    }
+
+    public JTextField getWagonName() {
+        return wagonName;
+    }
+
+    public JButton getButtonCreateWagon() {
+        return buttonCreateWagon;
+    }
+
+    public JComboBox getWagonTypes() {
+        return wagonTypes;
+    }
+
+    public JSpinner getWagonSeats() {
+        return wagonSeats;
+    }
+
 }

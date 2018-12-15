@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface TrainRepository {
 
-    void saveTrain(Train train);
+    Train saveTrain(Train train);
 
     void deleteTrain(String key);
 
     Train getTrain(String key);
+
+    boolean hasTrain(String key);
 
     List<Train> getAllTrains();
 
