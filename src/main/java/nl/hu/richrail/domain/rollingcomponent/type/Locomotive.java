@@ -2,10 +2,30 @@ package nl.hu.richrail.domain.rollingcomponent.type;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
-public class Locomotive extends RollingComponent {
+public class Locomotive implements RollingComponent {
+
+    private final String key;
+
+    private final String imagePath;
 
     Locomotive(String key, String imagePath) {
-        super(key, imagePath);
+        this.key = key;
+        this.imagePath = imagePath;
+    }
+
+    @Override
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    @Override
+    public int getSeats() {
+        return 0;
     }
 
     @Override

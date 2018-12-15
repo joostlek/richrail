@@ -2,15 +2,31 @@ package nl.hu.richrail.domain.rollingcomponent.type;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
-public class Wagon extends RollingComponent {
+public class Wagon implements RollingComponent {
 
-    private int seats;
+    private final String key;
 
-    Wagon(String id, String imagePath, int seats) {
-        super(id, imagePath);
+    private final String imagePath;
+
+    private final int seats;
+
+    Wagon(String key, String imagePath, int seats) {
+        this.key = key;
+        this.imagePath = imagePath;
         this.seats = seats;
     }
 
+    @Override
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    @Override
     public int getSeats() {
         return seats;
     }

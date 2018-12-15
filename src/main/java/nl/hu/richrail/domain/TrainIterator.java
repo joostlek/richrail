@@ -2,40 +2,27 @@ package nl.hu.richrail.domain;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
+import java.util.ArrayDeque;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 
-public class TrainIterator {
-    private Train train;
-    private int  currentPosition = 0;
-    private List<RollingComponent> rollingComponents;
+public class TrainIterator implements Iterator<RollingComponent> {
+
+    private final Queue<RollingComponent> items;
 
     public TrainIterator(Train train) {
-        this.train = train;
+        this.items = new ArrayDeque<>(train.getAllComponents());
     }
 
-    private void lazyLoad() {
-        if (rollingComponents == null) {
-            rollingComponents = train.getRollingComponentsFromTrain();
-        }
-    }
-
+    @Override
     public boolean hasNext() {
-        lazyLoad();
-        return currentPosition < rollingComponents.size();
+        return this.items.isEmpty();
     }
 
-    public RollingComponent getNext() {
-        if (!hasNext()) {
-            return null;
-        }
-
-        RollingComponent rollingComponent = rollingComponents.get(currentPosition);
-        currentPosition++;
-
-        return rollingComponent;
+    @Override
+    public RollingComponent next() {
+        return this.items.remove();
     }
 
-    public void reset() {
-        currentPosition = 0;
-    }
 }

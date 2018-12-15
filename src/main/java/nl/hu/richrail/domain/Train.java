@@ -3,74 +3,64 @@ package nl.hu.richrail.domain;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.domain.rollingcomponent.type.Wagon;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class Train {
-    private String id;
-    private List<RollingComponent> rollingComponents = new ArrayList<>();
+public class Train implements Iterable<RollingComponent> {
 
-    public Train(String name) {
-        this.id = name;
+    private final String key;
+
+    private final Dictionary<String, RollingComponent> componentMap;
+
+    public Train(String key) {
+        this.key = key;
+        this.componentMap = new Hashtable<>();
     }
 
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public RollingComponent getRollingComponentFromTrain(String rollingComponentId) {
-        TrainIterator trainIterator = createIterator();
+    public RollingComponent findComponent(String key) {
+        return this.componentMap.get(key);
+    }
 
-        while (trainIterator.hasNext()) {
-            RollingComponent rollingComponent = trainIterator.getNext();
+    public List<RollingComponent> getAllComponents() {
+        return Collections.list(this.componentMap.elements());
+    }
 
-            if (rollingComponent.getId().equals(rollingComponentId)) {
-                return rollingComponent;
-            }
+    public void addComponent(RollingComponent component) {
+        this.componentMap.put(component.getKey(), component);
+    }
+
+    public void removeComponent(RollingComponent component) {
+        this.componentMap.remove(component.getKey());
+    }
+
+    public void removeComponent(String key) {
+        this.componentMap.remove(key);
+    }
+
+    public int countSeats() {
+        int totalSeats = 0;
+
+        for (RollingComponent component : this) {
+            totalSeats += component.getSeats();
         }
 
-        return null;
+        return totalSeats;
     }
 
-    public List<RollingComponent> getRollingComponentsFromTrain() {
-        return rollingComponents;
-    }
-
-    public boolean addRollingComponentToTrain(RollingComponent rollingComponent) {
-        return rollingComponents.add(rollingComponent);
-    }
-
-    public boolean removeRollingComponentFromTrain(RollingComponent rollingComponent) {
-        return rollingComponents.remove(rollingComponent);
-    }
-
-    public int getTotalNumSeats() {
-        TrainIterator trainIterator = createIterator();
-        int totalNumSeats = 0;
-
-        while (trainIterator.hasNext()) {
-            RollingComponent rollingComponent = trainIterator.getNext();
-
-            if (rollingComponent instanceof Wagon) {
-                totalNumSeats += ((Wagon) rollingComponent).getSeats();
-            }
-        }
-
-        return totalNumSeats;
-    }
-
-    public TrainIterator createIterator() {
+    @Override
+    public Iterator<RollingComponent> iterator() {
         return new TrainIterator(this);
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("Train " + id);
-
-        if (rollingComponents.size() > 0) {
-            stringBuilder.append(" with " + rollingComponents.size() + " rollingcomponents");
-        }
-
-        return stringBuilder.toString();
+        return "Train{" +
+                "key='" + key + '\'' +
+                ", componentMap=" + componentMap +
+                '}';
     }
+
 }

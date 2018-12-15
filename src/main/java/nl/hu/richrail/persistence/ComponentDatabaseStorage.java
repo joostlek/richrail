@@ -18,7 +18,7 @@ public class ComponentDatabaseStorage implements StorageMethod {
     @Override
     public void saveComponent(RollingComponent rollingComponent) {
         try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement("INSERT INTO traincomponent(key, seats, train_key) VALUES (?, ?, NULL)")) {
-            stmt.setString(1, rollingComponent.getId());
+            stmt.setString(1, rollingComponent.getKey());
             //TODO: Add seats to rolling component
             stmt.setInt(2, 2);
             stmt.execute();

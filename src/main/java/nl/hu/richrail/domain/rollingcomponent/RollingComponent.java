@@ -1,25 +1,13 @@
 package nl.hu.richrail.domain.rollingcomponent;
 
-public abstract class RollingComponent implements Cloneable {
+public interface RollingComponent {
 
-    protected String key;
+    String getKey();
 
-    protected String imagePath;
+    String getImagePath();
 
-    public RollingComponent(String key, String imagePath) {
-        this.key = key;
-        this.imagePath = imagePath;
-    }
+    int getSeats();
 
-    public String getKey() {
-        return key;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
-    public abstract RollingComponent clone();
+    RollingComponent clone();
 
 }

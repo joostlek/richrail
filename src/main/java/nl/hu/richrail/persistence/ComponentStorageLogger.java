@@ -16,7 +16,7 @@ public class ComponentStorageLogger implements StorageMethod {
 
     @Override
     public void saveComponent(RollingComponent rollingComponent) {
-        this.logger.log(Level.INFO, "Save component {0}", rollingComponent.getId());
+        this.logger.log(Level.INFO, "Save component {0}", rollingComponent.getKey());
         this.componentStorage.saveComponent(rollingComponent);
     }
 
