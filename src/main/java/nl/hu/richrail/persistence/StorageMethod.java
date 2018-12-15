@@ -4,7 +4,7 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 import java.util.List;
 
-public interface ComponentStorageMethod {
+public interface StorageMethod {
     void saveComponent(RollingComponent rollingComponent);
 
     void deleteComponent(String key);

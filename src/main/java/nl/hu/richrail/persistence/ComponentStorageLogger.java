@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ComponentStorageLogger implements ComponentStorageMethod {
-    private ComponentStorageMethod componentStorage;
+public class ComponentStorageLogger implements StorageMethod {
+    private StorageMethod componentStorage;
     private Logger logger = Logger.getLogger(ComponentStorageLogger.class.getName());
 
-    public ComponentStorageLogger(ComponentStorageMethod componentStorage) {
+    public ComponentStorageLogger(StorageMethod componentStorage) {
         this.componentStorage = componentStorage;
     }
 

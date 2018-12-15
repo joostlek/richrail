@@ -1,23 +1,42 @@
 package nl.hu.richrail.domain.rollingcomponent.type;
 
+import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilder;
 
 public class WagonBuilder implements RollingComponentBuilder {
-    private String id;
+
+    /**
+     * 20 seats is the default, as per assignment requirements
+     */
+    private final int DEFAULT_SEATS = 20;
+
+    private String key;
+
     private String imagePath;
-    private int numSeats;
 
-    public WagonBuilder(String id, String imagePath) {
-        this.id = id;
-        this.imagePath = imagePath;
-    }
+    private int seats = DEFAULT_SEATS;
 
-    public void setNumSeats(int numSeats) {
-        this.numSeats = numSeats;
+    @Override
+    public RollingComponentBuilder setKey(String key) {
+        this.key = key;
+        return this;
     }
 
     @Override
-    public Wagon getBuildResult() {
-        return new Wagon(id, imagePath, numSeats);
+    public RollingComponentBuilder setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+        return this;
     }
+
+    @Override
+    public RollingComponentBuilder setSeats(int seats) {
+        this.seats = seats;
+        return this;
+    }
+
+    @Override
+    public RollingComponent build() {
+        return new Wagon(this.key, this.imagePath, this.seats);
+    }
+
 }

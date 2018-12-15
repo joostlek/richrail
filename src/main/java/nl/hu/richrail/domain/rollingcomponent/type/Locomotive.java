@@ -3,17 +3,25 @@ package nl.hu.richrail.domain.rollingcomponent.type;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 public class Locomotive extends RollingComponent {
-    public Locomotive(String id, String imagePath) {
-        super(id, imagePath);
+
+    Locomotive(String key, String imagePath) {
+        super(key, imagePath);
     }
 
     @Override
     public RollingComponent clone() {
-        return new Locomotive(this.getId(), this.getImagePath());
+        return new LocomotiveBuilder()
+                .setKey(this.key)
+                .setImagePath(this.imagePath)
+                .build();
     }
 
     @Override
     public String toString() {
-        return "Locomotive \"" + this.getId() + "\"";
+        return "Locomotive{" +
+                "key='" + key + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                '}';
     }
+
 }

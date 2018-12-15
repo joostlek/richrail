@@ -1,5 +1,13 @@
 package nl.hu.richrail.domain.rollingcomponent;
 
 public interface RollingComponentBuilder {
-    RollingComponent getBuildResult();
+
+    RollingComponentBuilder setKey(String key);
+
+    RollingComponentBuilder setImagePath(String imagePath);
+
+    RollingComponentBuilder setSeats(int seats);
+
+    RollingComponent build();
+
 }

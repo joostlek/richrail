@@ -53,7 +53,7 @@ public class RollingComponentFacade {
 
         LocomotiveBuilder locomotiveBuilder = new LocomotiveBuilder(id, imagePath);
 
-        return createRollingComponent(locomotiveBuilder.getBuildResult());
+        return createRollingComponent(locomotiveBuilder.build());
     }
 
     public boolean createRollingComponentWagon(String id, int numSeats) {
@@ -67,7 +67,7 @@ public class RollingComponentFacade {
 
         wagonBuilder.setNumSeats(numSeats);
 
-        return createRollingComponent(wagonBuilder.getBuildResult());
+        return createRollingComponent(wagonBuilder.build());
     }
 
     public boolean removeRollingComponent(String id) {
@@ -85,7 +85,7 @@ public class RollingComponentFacade {
         StringBuilder stringBuilder = new StringBuilder("rollingcomponents\n");
 
         for (RollingComponent rollingComponent : rollingComponents) {
-            stringBuilder.append("(" + rollingComponent.getId() + (rollingComponent instanceof Wagon ? ": " + ((Wagon) rollingComponent).getNumSeats() : "") + ")\n");
+            stringBuilder.append("(" + rollingComponent.getId() + (rollingComponent instanceof Wagon ? ": " + ((Wagon) rollingComponent).getSeats() : "") + ")\n");
         }
 
         return stringBuilder.toString();

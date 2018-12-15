@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ComponentDatabaseStorage implements ComponentStorageMethod {
+public class ComponentDatabaseStorage implements StorageMethod {
 
     private final Logger logger = Logger.getLogger(ComponentDatabaseStorage.class.getName());
 

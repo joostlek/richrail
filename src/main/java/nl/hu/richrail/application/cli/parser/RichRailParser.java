@@ -39,7 +39,7 @@ public class RichRailParser extends RichRailBaseListener {
 
         switch (ctx.type().getText()) {
             case "train": result = trainService.getTotalNumSeats(ctx.ID().getText()); break;
-            case "wagon": result = ((Wagon) trainService.getRollingComponent(ctx.ID().getText())).getNumSeats(); break;
+            case "wagon": result = ((Wagon) trainService.getRollingComponent(ctx.ID().getText())).getSeats(); break;
             default: result = 0; break;
         }
     }

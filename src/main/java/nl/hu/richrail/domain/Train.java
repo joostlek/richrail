@@ -52,7 +52,7 @@ public class Train {
             RollingComponent rollingComponent = trainIterator.getNext();
 
             if (rollingComponent instanceof Wagon) {
-                totalNumSeats += ((Wagon) rollingComponent).getNumSeats();
+                totalNumSeats += ((Wagon) rollingComponent).getSeats();
             }
         }
 
