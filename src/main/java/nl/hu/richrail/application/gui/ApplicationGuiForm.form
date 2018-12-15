@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="nl.hu.richrail.application.gui.ApplicationGuiForm">
-  <grid id="27dc6" binding="containerView" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="containerView" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="624" height="400"/>
@@ -32,6 +32,7 @@
               <component id="2dae5" class="javax.swing.JLabel" binding="selectedTrain">
                 <constraints/>
                 <properties>
+                  <font style="0"/>
                   <text value="Geen"/>
                 </properties>
               </component>
@@ -163,6 +164,8 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
             <colspec value="fill:d:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
@@ -181,7 +184,7 @@
                   <text value="Wagon naam"/>
                 </properties>
               </component>
-              <component id="45a81" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="45a81" class="javax.swing.JTextField" binding="wagonName">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -190,23 +193,46 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="8c74a" class="javax.swing.JButton" default-binding="true">
+              <component id="5cf78" class="javax.swing.JButton" binding="buttonCreateWagon">
                 <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
-                  <text value="Maak wagon"/>
+                  <text value="Aanmaken"/>
                 </properties>
               </component>
-              <component id="5cf78" class="javax.swing.JButton" binding="maakLocomotiefButton" default-binding="true">
+              <component id="66d7" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
-                  <text value="Maak locomotief"/>
+                  <text value="Wagon type"/>
                 </properties>
+              </component>
+              <component id="c89d5" class="javax.swing.JComboBox" binding="wagonTypes">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="1a089" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Seats"/>
+                </properties>
+              </component>
+              <component id="6f756" class="javax.swing.JSpinner" binding="wagonSeats">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false"/>
+                </constraints>
+                <properties/>
               </component>
             </children>
           </grid>
