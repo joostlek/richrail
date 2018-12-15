@@ -1,15 +1,16 @@
 grammar RichRail;
 
 // Rules
-command         : newcommand | addcommand | getcommand | delcommand | remcommand;
-newcommand      : newtraincommand | newwagoncommand;
-newtraincommand : 'new' 'train' ID;
-newwagoncommand : 'new' 'wagon' ID ('numseats' NUMBER)?;
-addcommand      : 'add' ID 'to' ID;
-getcommand      : 'getnumseats' type id=ID;
-delcommand      : 'delete' type ID;
-remcommand      : 'remove' ID 'from' ID;
-type            : 'train' | 'wagon';
+command                 : newcommand | addcommand | getcommand | delcommand | remcommand;
+newcommand              : newtraincommand | newwagoncommand | newlocomotivecommand;
+newtraincommand         : 'new' 'train' ID                      # CommandNewTrain;
+newwagoncommand         : 'new' 'wagon' ID ('numseats' NUMBER)? # CommandNewWagon;
+newlocomotivecommand    : 'new' 'locomotive' ID                 # CommandNewLocomotive;
+addcommand              : 'add' ID 'to' ID                      # CommandAdd;
+getcommand              : 'getnumseats' type id=ID              # CommandGet;
+delcommand              : 'delete' type ID                      # CommandDel;
+remcommand              : 'remove' ID 'from' ID                 # CommandRem;
+type                    : 'train' | 'wagon' | 'locomotive'      # Type;
 
 // Tokens
 ID          : ('a'..'z')('a'..'z'|'0'..'9')*;

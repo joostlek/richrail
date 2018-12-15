@@ -8,17 +8,17 @@ public class RichRailParser extends RichRailBaseListener {
     private TrainService trainService = TrainService.getInstance();
 
     @Override
-    public void enterNewtraincommand(parser.RichRailParser.NewtraincommandContext ctx) {
+    public void enterCommandNewTrain(parser.RichRailParser.CommandNewTrainContext ctx) {
         trainService.createTrain(ctx.ID().getText());
     }
 
     @Override
-    public void enterNewlocomotivecommand(parser.RichRailParser.NewlocomotivecommandContext ctx) {
+    public void enterCommandNewLocomotive(parser.RichRailParser.CommandNewLocomotiveContext ctx) {
         trainService.createRollingComponentLocomotive(ctx.ID().getText());
     }
 
     @Override
-    public void enterNewwagoncommand(parser.RichRailParser.NewwagoncommandContext ctx) {
+    public void enterCommandNewWagon(parser.RichRailParser.CommandNewWagonContext ctx) {
         int numSeats = 0;
 
         if (ctx.NUMBER() != null) {
@@ -29,12 +29,12 @@ public class RichRailParser extends RichRailBaseListener {
     }
 
     @Override
-    public void enterAddcommand(parser.RichRailParser.AddcommandContext ctx) {
+    public void enterCommandAdd(parser.RichRailParser.CommandAddContext ctx) {
         trainService.addRollingComponentToTrain(ctx.ID(1).getText(), trainService.getRollingComponent(ctx.ID(0).getText()));
     }
 
     @Override
-    public void enterGetcommand(parser.RichRailParser.GetcommandContext ctx) {
+    public void enterCommandGet(parser.RichRailParser.CommandGetContext ctx) {
         int result;
 
         switch (ctx.type().getText()) {
@@ -45,7 +45,7 @@ public class RichRailParser extends RichRailBaseListener {
     }
 
     @Override
-    public void enterDelcommand(parser.RichRailParser.DelcommandContext ctx) {
+    public void enterCommandDel(parser.RichRailParser.CommandDelContext ctx) {
         boolean result;
 
         switch (ctx.type().getText()) {
@@ -56,7 +56,7 @@ public class RichRailParser extends RichRailBaseListener {
     }
 
     @Override
-    public void enterRemcommand(parser.RichRailParser.RemcommandContext ctx) {
+    public void enterCommandRem(parser.RichRailParser.CommandRemContext ctx) {
         trainService.removeRollingComponentFromTrain(ctx.ID(1).getText(), trainService.getRollingComponentFromTrain(ctx.ID(1).getText(), ctx.ID(0).getText()));
     }
 }
