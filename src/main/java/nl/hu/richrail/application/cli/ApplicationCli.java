@@ -1,13 +1,15 @@
 package nl.hu.richrail.application.cli;
 
 import nl.hu.richrail.application.ApplicationBase;
-import nl.hu.richrail.services.TrainService;
+import nl.hu.richrail.persistence.StorageMethod;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class ApplicationCli extends ApplicationBase {
+
+    public ApplicationCli(StorageMethod storage) {
+        super(storage);
+    }
 
     @Override
     protected String getWindowTitle() {
@@ -26,19 +28,19 @@ public class ApplicationCli extends ApplicationBase {
 
     @Override
     protected void setupWindow() {
-        TrainService trainService = TrainService.getInstance();
-
-        JPanel body = new JPanel();
-        body.setLayout(new GridLayout(0, 1, 20, 20));
-        body.setBorder(new EmptyBorder(20, 20, 20, 20));
-        body.add(new JLabel("<html><center>CLI</center></html>"));
-
-        // textarea with available rollingcomponents and trains
-        String availableResults = trainService.getRollingComponentsString() + trainService.getTrainsString();
-        JTextArea textArea = new JTextArea(availableResults);
-        JScrollPane jScrollPane = new JScrollPane(textArea);
-        body.add(jScrollPane);
-
-        setContentPane(body);
+//        TrainService trainService = TrainService.getInstance();
+//
+//        JPanel body = new JPanel();
+//        body.setLayout(new GridLayout(0, 1, 20, 20));
+//        body.setBorder(new EmptyBorder(20, 20, 20, 20));
+//        body.add(new JLabel("<html><center>CLI</center></html>"));
+//
+//        // textarea with available rollingcomponents and trains
+//        String availableResults = trainService.getRollingComponentsString() + trainService.getTrainsString();
+//        JTextArea textArea = new JTextArea(availableResults);
+//        JScrollPane jScrollPane = new JScrollPane(textArea);
+//        body.add(jScrollPane);
+//
+//        setContentPane(body);
     }
 }

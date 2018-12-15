@@ -2,12 +2,17 @@ package nl.hu.richrail.application;
 
 import nl.hu.richrail.application.cli.ApplicationCli;
 import nl.hu.richrail.application.gui.ApplicationGui;
+import nl.hu.richrail.persistence.StorageMethod;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class ApplicationPicker extends ApplicationBase {
+
+    public ApplicationPicker(StorageMethod storage) {
+        super(storage);
+    }
 
     @Override
     protected String getWindowTitle() {
@@ -47,11 +52,11 @@ public class ApplicationPicker extends ApplicationBase {
 
         switch (app) {
             case CLI:
-                application = new ApplicationCli();
+                application = new ApplicationCli(this.storage);
                 break;
 
             case GUI:
-                application = new ApplicationGui();
+                application = new ApplicationGui(this.storage);
                 break;
 
             default:

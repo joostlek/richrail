@@ -1,9 +1,17 @@
 package nl.hu.richrail.application;
 
+import nl.hu.richrail.persistence.StorageMethod;
+
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class ApplicationBase extends JFrame {
+
+    protected final StorageMethod storage;
+
+    public ApplicationBase(StorageMethod storage) {
+        this.storage = storage;
+    }
 
     protected abstract String getWindowTitle();
 

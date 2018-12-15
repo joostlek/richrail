@@ -1,11 +1,12 @@
-package nl.hu.richrail.persistence;
+package nl.hu.richrail.persistence.file;
 
 import nl.hu.richrail.domain.Train;
+import nl.hu.richrail.persistence.TrainRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TrainFileStorage implements TrainStorageMethod {
+public class FileTrainRepository implements TrainRepository {
+
     @Override
     public void saveTrain(Train train) {
         throw new UnsupportedOperationException();
@@ -18,11 +19,12 @@ public class TrainFileStorage implements TrainStorageMethod {
 
     @Override
     public Train getTrain(String key) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public List<Train> getAllTrains() {
-        return new ArrayList<>();
+        throw new UnsupportedOperationException();
     }
+
 }

@@ -1,10 +1,15 @@
 package nl.hu.richrail.application.gui;
 
 import nl.hu.richrail.application.ApplicationBase;
+import nl.hu.richrail.persistence.StorageMethod;
 
 import java.awt.Dimension;
 
 public class ApplicationGui extends ApplicationBase {
+
+    public ApplicationGui(StorageMethod storage) {
+        super(storage);
+    }
 
     @Override
     protected String getWindowTitle() {

@@ -4,7 +4,7 @@ import nl.hu.richrail.domain.Train;
 
 import java.util.List;
 
-public interface TrainStorageMethod {
+public interface TrainRepository {
 
     void saveTrain(Train train);
 
