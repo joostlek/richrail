@@ -4,6 +4,7 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class TrainIterator implements Iterator<RollingComponent> {
@@ -21,6 +22,9 @@ public class TrainIterator implements Iterator<RollingComponent> {
 
     @Override
     public RollingComponent next() {
+        if (!this.hasNext()) {
+            throw new NoSuchElementException();
+        }
         return this.items.remove();
     }
 
