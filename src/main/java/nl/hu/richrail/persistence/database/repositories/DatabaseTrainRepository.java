@@ -1,6 +1,7 @@
 package nl.hu.richrail.persistence.database.repositories;
 
 import nl.hu.richrail.domain.Train;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.persistence.TrainRepository;
 import nl.hu.richrail.persistence.database.DatabaseConnectionFactory;
 
@@ -54,8 +55,21 @@ public class DatabaseTrainRepository implements TrainRepository {
 
     @Override
     public Train getTrain(String key) {
-        // TODO: Get from database.
-        return new Train(key);
+        try (Connection connection = this.connectionFactory.createConnection();
+             PreparedStatement stmt = connection.prepareStatement("SELECT `key` FROM TRAINS WHERE `key` = ?")) {
+            stmt.setString(1, key);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    Train train = new Train(key);
+                    List<RollingComponent> rollingComponents = new DatabaseComponentRepository(this.connectionFactory).getComponentsByTrainKey(key);
+                    rollingComponents.forEach(train::addComponent);
+                    return train;
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+        return null;
     }
 
     @Override
