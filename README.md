@@ -12,3 +12,11 @@ Opdracht om een redesign van oude code "poorrail" uit te voeren en hierbij reken
 2. Voer `Main.java` uit. 
 
 Vervolgens kan een keuze worden gemaakt tussen de gui en cli.
+
+## Auteurs
+
+Dit project is gemaakt door Groep 8 uit V2B in opdracht van [Alex Rothuis](https://github.com/arothuis).
+
+- [Mike](https://github.com/AeonLucid)
+- [Joost](https://github.com/joostlek)
+- [Dennis](https://github.com/dennisvk)
