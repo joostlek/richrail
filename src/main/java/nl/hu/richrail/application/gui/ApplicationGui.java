@@ -86,12 +86,15 @@ public class ApplicationGui extends ApplicationBase {
         // Add service event handlers.
         this.trainRepository.getEventManager().subscribe(EventType.SAVE, eventType -> updateTrains());
         this.trainRepository.getEventManager().subscribe(EventType.DELETE, eventType -> updateTrains());
+        this.componentRepository.getEventManager().subscribe(EventType.SAVE, eventType -> updateVisualisation());
+        this.componentRepository.getEventManager().subscribe(EventType.UPDATE, eventType -> updateVisualisation());
+        this.componentRepository.getEventManager().subscribe(EventType.DELETE, eventType -> updateVisualisation());
 
         // Start rendering the GUI.
-        setContentPane(this.form.$$$getRootComponent$$$());
+        this.setContentPane(this.form.$$$getRootComponent$$$());
 
         // Load initial data.
-        updateTrains();
+        this.updateTrains();
     }
 
     private void setSelectedTrain(String key) {
@@ -106,11 +109,20 @@ public class ApplicationGui extends ApplicationBase {
     }
 
     private void updateTrains() {
+        // Update combo box.
         this.form.getAvailableTrains().removeAllItems();
 
         for (Train train : this.trainRepository.getAllTrains()) {
             this.form.getAvailableTrains().addItem(train.getKey());
         }
+
+        // Update visualisation.
+        this.updateVisualisation();
+    }
+
+    private void updateVisualisation() {
+        this.form.getDrawPanel().setTrains(this.trainService.getTrainsWithComponents());
+        this.form.getDrawPanel().repaint();
     }
 
 }

@@ -82,12 +82,14 @@ public class ApplicationCli extends ApplicationBase implements RichRailCliCallba
                 CliUtils.getComponentsString(this.componentRepository.getAllComponents()) +
                         CliUtils.getTrainsString(this.trainService.getTrainsWithComponents())
         );
+
+        this.updateDrawing();
     }
 
     @Override
     public void updateDrawing() {
-        // TODO (Mike): Visualize trains.
-        // this.form.getDrawPanel()
+        this.form.getDrawPanel().setTrains(this.trainService.getTrainsWithComponents());
+        this.form.getDrawPanel().repaint();
     }
 
 }
