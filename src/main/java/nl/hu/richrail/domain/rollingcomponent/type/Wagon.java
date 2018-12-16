@@ -44,11 +44,7 @@ public class Wagon implements RollingComponent {
 
     @Override
     public RollingComponent clone() {
-        return new WagonBuilder()
-                .setKey(this.key)
-                .setSeats(this.seats)
-                .setTrainKey(this.trainKey)
-                .build();
+        return new Wagon(this.key, this.seats, this.trainKey);
     }
 
     @Override
