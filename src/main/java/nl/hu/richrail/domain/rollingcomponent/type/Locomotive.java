@@ -8,9 +8,12 @@ public class Locomotive implements RollingComponent {
 
     private final String imagePath;
 
-    Locomotive(String key, String imagePath) {
+    private String trainKey;
+
+    Locomotive(String key, String imagePath, String trainKey) {
         this.key = key;
         this.imagePath = imagePath;
+        this.trainKey = trainKey;
     }
 
     @Override
@@ -39,6 +42,11 @@ public class Locomotive implements RollingComponent {
     @Override
     public String getType() {
         return "Locomotive";
+    }
+
+    @Override
+    public String getTrainKey() {
+        return trainKey;
     }
 
     @Override

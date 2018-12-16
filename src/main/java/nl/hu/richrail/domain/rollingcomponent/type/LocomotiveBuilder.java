@@ -9,6 +9,8 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
 
     private String imagePath;
 
+    private String trainKey = null;
+
     @Override
     public RollingComponentBuilder setKey(String key) {
         this.key = key;
@@ -27,8 +29,14 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
     }
 
     @Override
+    public RollingComponentBuilder setTrainKey(String trainKey) {
+        this.trainKey = trainKey;
+        return this;
+    }
+
+    @Override
     public RollingComponent build() {
-        return new Locomotive(this.key, this.imagePath);
+        return new Locomotive(this.key, this.imagePath, this.trainKey);
     }
 
 }

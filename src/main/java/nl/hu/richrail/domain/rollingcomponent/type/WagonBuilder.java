@@ -14,6 +14,8 @@ public class WagonBuilder implements RollingComponentBuilder {
 
     private String imagePath;
 
+    private String trainKey = null;
+
     private int seats = DEFAULT_SEATS;
 
     @Override
@@ -35,8 +37,14 @@ public class WagonBuilder implements RollingComponentBuilder {
     }
 
     @Override
+    public RollingComponentBuilder setTrainKey(String trainKey) {
+        this.trainKey = trainKey;
+        return this;
+    }
+
+    @Override
     public RollingComponent build() {
-        return new Wagon(this.key, this.imagePath, this.seats);
+        return new Wagon(this.key, this.imagePath, this.seats, this.trainKey);
     }
 
 }

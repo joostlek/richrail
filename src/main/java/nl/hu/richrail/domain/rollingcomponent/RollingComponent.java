@@ -12,4 +12,6 @@ public interface RollingComponent {
 
     String getType();
 
+    String getTrainKey();
+
 }

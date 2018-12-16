@@ -10,10 +10,13 @@ public class Wagon implements RollingComponent {
 
     private final int seats;
 
-    Wagon(String key, String imagePath, int seats) {
+    private String trainKey;
+
+    Wagon(String key, String imagePath, int seats, String trainKey) {
         this.key = key;
         this.imagePath = imagePath;
         this.seats = seats;
+        this.trainKey = trainKey;
     }
 
     @Override
@@ -43,6 +46,11 @@ public class Wagon implements RollingComponent {
     @Override
     public String getType() {
         return "Wagon";
+    }
+
+    @Override
+    public String getTrainKey() {
+        return trainKey;
     }
 
     @Override

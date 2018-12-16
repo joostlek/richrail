@@ -8,6 +8,8 @@ public interface RollingComponentBuilder {
 
     RollingComponentBuilder setSeats(int seats);
 
+    RollingComponentBuilder setTrainKey(String trainKey);
+
     RollingComponent build();
 
 }
