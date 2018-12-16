@@ -1,16 +1,13 @@
 package nl.hu.richrail.persistence.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EventManager {
 
     private final Map<EventType, List<EventListener>> listeners;
 
     public EventManager(EventType... keys) {
-        this.listeners = new HashMap<>();
+        this.listeners = new EnumMap<>(EventType.class);
 
         for (EventType key : keys) {
             this.listeners.put(key, new ArrayList<>());
