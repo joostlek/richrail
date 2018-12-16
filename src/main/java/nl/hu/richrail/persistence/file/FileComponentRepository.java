@@ -2,20 +2,19 @@ package nl.hu.richrail.persistence.file;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilder;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilderFactory;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 import nl.hu.richrail.persistence.ComponentRepository;
 import nl.hu.richrail.persistence.file.dao.FileComponent;
-import nl.hu.richrail.persistence.file.dao.FileTrain;
 import nl.hu.richrail.persistence.memory.repositories.MemoryComponentRepository;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class FileComponentRepository implements ComponentRepository, FileOperations {
@@ -96,7 +95,7 @@ public class FileComponentRepository implements ComponentRepository, FileOperati
             // Store components.
             String json = this.gson.toJson(fileComponents);
 
-            FileUtils.writeStringToFile(fileFactory.getComponentsFile(), json, Charset.forName("UTF-8"));
+            FileUtils.writeStringToFile(fileFactory.getComponentsFile(), json, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,8 +108,9 @@ public class FileComponentRepository implements ComponentRepository, FileOperati
             File file = fileFactory.getComponentsFile();
             if (file.exists()) {
                 // Read components.
-                String json = FileUtils.readFileToString(fileFactory.getComponentsFile(), Charset.forName("UTF-8"));
-                List<FileComponent> components = this.gson.fromJson(json, new TypeToken<List<FileComponent>>(){}.getType());
+                String json = FileUtils.readFileToString(fileFactory.getComponentsFile(), StandardCharsets.UTF_8);
+                List<FileComponent> components = this.gson.fromJson(json, new TypeToken<List<FileComponent>>() {
+                }.getType());
 
                 // Store trains in memory.
                 for (FileComponent component : components) {
