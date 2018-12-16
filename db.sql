@@ -5,7 +5,7 @@ create table trains
       primary key
 );
 
-create table traincomponent
+create table if not exists traincomponent
 (
   key       varchar(5) not null
     constraint traincomponent_pk
@@ -14,6 +14,7 @@ create table traincomponent
   train_key varchar(5)
     constraint traincomponent_trains_key_fk
       references trains
-      on delete set null
+      on delete set null,
+  type      varchar(10)
 );
 
