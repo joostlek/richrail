@@ -25,11 +25,6 @@ public class Locomotive implements RollingComponent {
     }
 
     @Override
-    public RollingComponent clone() {
-        return new Locomotive(this.key, this.trainKey);
-    }
-
-    @Override
     public RollingComponentType getType() {
         return RollingComponentType.LOCOMOTIVE;
     }

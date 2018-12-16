@@ -43,11 +43,6 @@ public class Wagon implements RollingComponent {
     }
 
     @Override
-    public RollingComponent clone() {
-        return new Wagon(this.key, this.seats, this.trainKey);
-    }
-
-    @Override
     public String toString() {
         return "WAGON{" +
                 "key='" + key + '\'' +

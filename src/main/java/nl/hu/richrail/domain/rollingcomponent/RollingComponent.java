@@ -6,8 +6,6 @@ public interface RollingComponent {
 
     int getSeats();
 
-    RollingComponent clone();
-
     RollingComponentType getType();
 
     String getTrainKey();
