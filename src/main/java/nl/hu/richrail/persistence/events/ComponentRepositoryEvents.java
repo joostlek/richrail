@@ -13,7 +13,7 @@ public class ComponentRepositoryEvents implements ComponentRepository {
 
     public ComponentRepositoryEvents(ComponentRepository repository) {
         this.repository = repository;
-        this.eventManager = new EventManager("save", "update", "delete");
+        this.eventManager = new EventManager(EventType.SAVE, EventType.UPDATE, EventType.DELETE);
     }
 
     public EventManager getEventManager() {
@@ -23,25 +23,25 @@ public class ComponentRepositoryEvents implements ComponentRepository {
     @Override
     public void insertComponent(RollingComponent component) {
         this.repository.insertComponent(component);
-        this.eventManager.notify("save");
+        this.eventManager.notify(EventType.SAVE);
     }
 
     @Override
     public void updateComponentTrainKey(String key, String trainKey) {
         this.repository.updateComponentTrainKey(key, trainKey);
-        this.eventManager.notify("update");
+        this.eventManager.notify(EventType.UPDATE);
     }
 
     @Override
     public void removeComponentTrainKey(String key) {
         this.repository.removeComponentTrainKey(key);
-        this.eventManager.notify("update");
+        this.eventManager.notify(EventType.UPDATE);
     }
 
     @Override
     public void deleteComponent(String key) {
         this.repository.deleteComponent(key);
-        this.eventManager.notify("delete");
+        this.eventManager.notify(EventType.DELETE);
     }
 
     @Override

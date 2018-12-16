@@ -9,6 +9,7 @@ import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 import nl.hu.richrail.persistence.StorageMethod;
 import nl.hu.richrail.persistence.events.ComponentRepositoryEvents;
+import nl.hu.richrail.persistence.events.EventType;
 import nl.hu.richrail.persistence.events.TrainRepositoryEvents;
 import nl.hu.richrail.services.TrainService;
 
@@ -83,8 +84,8 @@ public class ApplicationGui extends ApplicationBase {
         });
 
         // Add service event handlers.
-        this.trainRepository.getEventManager().subscribe("save", eventType -> updateTrains());
-        this.trainRepository.getEventManager().subscribe("delete", eventType -> updateTrains());
+        this.trainRepository.getEventManager().subscribe(EventType.SAVE, eventType -> updateTrains());
+        this.trainRepository.getEventManager().subscribe(EventType.DELETE, eventType -> updateTrains());
 
         // Start rendering the GUI.
         setContentPane(this.form.$$$getRootComponent$$$());

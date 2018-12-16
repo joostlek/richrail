@@ -6,6 +6,7 @@ import nl.hu.richrail.application.cli.parser.RichRailCliCallback;
 import nl.hu.richrail.application.cli.parser.RichRailCliProcessor;
 import nl.hu.richrail.persistence.StorageMethod;
 import nl.hu.richrail.persistence.events.ComponentRepositoryEvents;
+import nl.hu.richrail.persistence.events.EventType;
 import nl.hu.richrail.persistence.events.TrainRepositoryEvents;
 import nl.hu.richrail.services.TrainService;
 import nl.hu.richrail.utils.CliUtils;
@@ -57,11 +58,11 @@ public class ApplicationCli extends ApplicationBase implements RichRailCliCallba
         this.form.getButtonExecute().addActionListener(executeListener);
 
         // Add service event handlers.
-        this.trainRepository.getEventManager().subscribe("save", eventType -> updateOverview());
-        this.trainRepository.getEventManager().subscribe("delete", eventType -> updateOverview());
-        this.componentRepository.getEventManager().subscribe("save", eventType -> updateOverview());
-        this.componentRepository.getEventManager().subscribe("update", eventType -> updateOverview());
-        this.componentRepository.getEventManager().subscribe("delete", eventType -> updateOverview());
+        this.trainRepository.getEventManager().subscribe(EventType.SAVE, eventType -> updateOverview());
+        this.trainRepository.getEventManager().subscribe(EventType.DELETE, eventType -> updateOverview());
+        this.componentRepository.getEventManager().subscribe(EventType.SAVE, eventType -> updateOverview());
+        this.componentRepository.getEventManager().subscribe(EventType.UPDATE, eventType -> updateOverview());
+        this.componentRepository.getEventManager().subscribe(EventType.DELETE, eventType -> updateOverview());
 
         // Start rendering the GUI.
         setContentPane(this.form.$$$getRootComponent$$$());

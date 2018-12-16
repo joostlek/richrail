@@ -7,21 +7,21 @@ import java.util.Map;
 
 public class EventManager {
 
-    private final Map<String, List<EventListener>> listeners;
+    private final Map<EventType, List<EventListener>> listeners;
 
-    public EventManager(String... keys) {
+    public EventManager(EventType... keys) {
         this.listeners = new HashMap<>();
 
-        for (String key : keys) {
+        for (EventType key : keys) {
             this.listeners.put(key, new ArrayList<>());
         }
     }
 
-    public void subscribe(String key, EventListener listener) {
+    public void subscribe(EventType key, EventListener listener) {
         this.listeners.get(key).add(listener);
     }
 
-    public void notify(String key) {
+    public void notify(EventType key) {
         for (EventListener listener : this.listeners.get(key)) {
             listener.notified(key);
         }

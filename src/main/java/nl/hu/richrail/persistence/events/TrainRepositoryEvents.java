@@ -13,7 +13,7 @@ public class TrainRepositoryEvents implements TrainRepository {
 
     public TrainRepositoryEvents(TrainRepository repository) {
         this.repository = repository;
-        this.eventManager = new EventManager("save", "delete");
+        this.eventManager = new EventManager(EventType.SAVE, EventType.DELETE);
     }
 
     public EventManager getEventManager() {
@@ -23,14 +23,14 @@ public class TrainRepositoryEvents implements TrainRepository {
     @Override
     public Train saveTrain(Train train) {
         Train savedTrain = this.repository.saveTrain(train);
-        this.eventManager.notify("save");
+        this.eventManager.notify(EventType.SAVE);
         return savedTrain;
     }
 
     @Override
     public void deleteTrain(String key) {
         this.repository.deleteTrain(key);
-        this.eventManager.notify("delete");
+        this.eventManager.notify(EventType.DELETE);
     }
 
     @Override
