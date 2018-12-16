@@ -24,7 +24,7 @@ public class MouseTracker implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        // Ignored.
     }
 
     @Override
@@ -41,17 +41,17 @@ public class MouseTracker implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        // Ignored.
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        // Ignored.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        // Ignored.
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MouseTracker implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        // Ignored.
     }
 
 }
