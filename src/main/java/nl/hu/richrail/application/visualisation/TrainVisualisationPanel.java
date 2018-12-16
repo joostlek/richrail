@@ -2,6 +2,7 @@ package nl.hu.richrail.application.visualisation;
 
 import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -70,12 +71,16 @@ public class TrainVisualisationPanel extends JPanel {
     }
 
     private void drawComponent(Graphics g, Point offset, int trainIndex, int componentIndex, RollingComponent component) {
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(component.getType() == RollingComponentType.WAGON ? Color.orange : Color.PINK);
         g.fillRect(offset.x + 30 + componentIndex * TRAIN_LENGTH, offset.y + 80 + trainIndex * TRAIN_OFFSET, 80, 40);
+
         g.setColor(Color.BLACK);
         g.fillRoundRect(offset.x + 35 + componentIndex * TRAIN_LENGTH, offset.y + 120 + trainIndex * TRAIN_OFFSET, 20, 20, 20, 20);
         g.fillRoundRect(offset.x + 80 + componentIndex * TRAIN_LENGTH, offset.y + 120 + trainIndex * TRAIN_OFFSET, 20, 20, 20, 20);
         g.drawString(component.getKey(), offset.x + 40 + componentIndex * TRAIN_LENGTH, offset.y + 105 + trainIndex * TRAIN_OFFSET);
+
+        g.setColor(Color.WHITE);
+        g.drawString(component.getType().toString(), offset.x + 32 + componentIndex * TRAIN_LENGTH, offset.y + 75 + trainIndex * TRAIN_OFFSET);
     }
 
 }
