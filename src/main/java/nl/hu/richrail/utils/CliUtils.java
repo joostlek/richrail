@@ -9,6 +9,9 @@ import java.util.List;
 
 public class CliUtils {
 
+    private CliUtils() {
+    }
+
     public static String getTrainsString(List<Train> trains) {
         StringBuilder stringBuilder = new StringBuilder("trains\n");
 
