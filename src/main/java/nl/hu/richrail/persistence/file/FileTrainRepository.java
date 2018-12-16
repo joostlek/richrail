@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.persistence.TrainRepository;
+import nl.hu.richrail.persistence.file.dao.FileTrain;
 import nl.hu.richrail.persistence.memory.repositories.MemoryTrainRepository;
 import org.apache.commons.io.FileUtils;
 
@@ -58,7 +59,19 @@ public class FileTrainRepository implements TrainRepository, FileOperations {
     @Override
     public void saveToFile() {
         try {
-            String json = this.gson.toJson(trainRepository.getAllTrains());
+            // Get all trains.
+            List<Train> trains = trainRepository.getAllTrains();
+
+            // Map trains to a DAO.
+            FileTrain[] fileTrains = trains.stream().map(train -> {
+                FileTrain fileTrain = new FileTrain();
+                fileTrain.key = train.getKey();
+                return fileTrain;
+            }).toArray(FileTrain[]::new);
+
+            // Store trains.
+            String json = this.gson.toJson(fileTrains);
+
             FileUtils.writeStringToFile(fileFactory.getTrainsFile(), json, Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,12 +81,16 @@ public class FileTrainRepository implements TrainRepository, FileOperations {
     @Override
     public void loadFromFile() {
         try {
+            // Check if file exists.
             File file = fileFactory.getTrainsFile();
             if (file.exists()) {
+                // Read trains.
                 String json = FileUtils.readFileToString(fileFactory.getTrainsFile(), Charset.forName("UTF-8"));
-                List<Train> trains = this.gson.fromJson(json, new TypeToken<List<Train>>(){}.getType());
-                for (Train train : trains) {
-                    this.trainRepository.saveTrain(train);
+                List<FileTrain> trains = this.gson.fromJson(json, new TypeToken<List<FileTrain>>(){}.getType());
+
+                // Store trains in memory.
+                for (FileTrain train : trains) {
+                    this.trainRepository.saveTrain(new Train(train.key));
                 }
             }
         } catch (IOException e) {
