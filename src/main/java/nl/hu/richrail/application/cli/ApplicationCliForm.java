@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import nl.hu.richrail.application.visualisation.TrainVisualisationPanel;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -15,7 +16,7 @@ public class ApplicationCliForm {
     private JTextPane textLog;
     private JTextField commandText;
     private JButton buttonExecute;
-    private JPanel drawPanel;
+    private TrainVisualisationPanel drawPanel;
     private JPanel commandPanel;
 
     {
@@ -33,16 +34,13 @@ public class ApplicationCliForm {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
+        createUIComponents();
         containerView = new JPanel();
         containerView.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JSplitPane splitPane1 = new JSplitPane();
         splitPane1.setDividerLocation(250);
         splitPane1.setOrientation(0);
         containerView.add(splitPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        drawPanel = new JPanel();
-        drawPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        drawPanel.setBackground(new Color(-13158601));
-        drawPanel.setEnabled(true);
         splitPane1.setLeftComponent(drawPanel);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
@@ -80,16 +78,17 @@ public class ApplicationCliForm {
         return containerView;
     }
 
+    private void createUIComponents() {
+        this.drawPanel = new TrainVisualisationPanel();
+        this.drawPanel.setBackground(Color.gray);
+    }
+
     public JTextPane getTextOverview() {
         return textOverview;
     }
 
     public JTextPane getTextLog() {
         return textLog;
-    }
-
-    public JPanel getCommandPanel() {
-        return commandPanel;
     }
 
     public JTextField getCommandText() {
@@ -100,4 +99,7 @@ public class ApplicationCliForm {
         return buttonExecute;
     }
 
+    public TrainVisualisationPanel getDrawPanel() {
+        return drawPanel;
+    }
 }
