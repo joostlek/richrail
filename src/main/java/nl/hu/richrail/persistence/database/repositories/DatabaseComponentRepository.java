@@ -155,7 +155,6 @@ public class DatabaseComponentRepository implements ComponentRepository {
         return components;
     }
 
-    // TODO (Joost): Refactor code below to a better location (or not..).
     private RollingComponent resultToComponent(ResultSet result) throws SQLException {
         String key = result.getString("KEY");
         int seats = result.getInt("SEATS");
