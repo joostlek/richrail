@@ -8,7 +8,7 @@ public class WagonBuilder implements RollingComponentBuilder {
     /**
      * 20 seats is the default, as per assignment requirements
      */
-    private final int DEFAULT_SEATS = 20;
+    private final static int DEFAULT_SEATS = 20;
 
     private String key;
 
