@@ -5,21 +5,26 @@ import com.google.gson.reflect.TypeToken;
 import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.persistence.ComponentRepository;
+import nl.hu.richrail.persistence.memory.repositories.MemoryComponentRepository;
 import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class FileComponentRepository implements ComponentRepository {
-
-    private final ComponentRepository componentRepository;
+public class FileComponentRepository implements ComponentRepository, FileOperations {
 
     private final FileFactory fileFactory;
 
-    public FileComponentRepository(FileFactory fileFactory, ComponentRepository componentRepository) {
+    private final Gson gson;
+
+    private final ComponentRepository componentRepository;
+
+    FileComponentRepository(FileFactory fileFactory, Gson gson) {
         this.fileFactory = fileFactory;
-        this.componentRepository = componentRepository;
+        this.gson = gson;
+        this.componentRepository = new MemoryComponentRepository();
         loadFromFile();
     }
 
@@ -67,27 +72,30 @@ public class FileComponentRepository implements ComponentRepository {
         return componentRepository.getComponentsByTrainKey(key);
     }
 
-
-    private void saveToFile() {
+    @Override
+    public void saveToFile() {
         try {
-            Gson gson = new Gson();
-            String json = gson.toJson(componentRepository.getAllComponents());
+            String json = this.gson.toJson(componentRepository.getAllComponents());
             FileUtils.writeStringToFile(fileFactory.getComponentsFile(), json, Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadFromFile() {
+    @Override
+    public void loadFromFile() {
         try {
-            Gson gson = new Gson();
-            String json = FileUtils.readFileToString(fileFactory.getComponentsFile(), Charset.forName("UTF-8"));
-            List<RollingComponent> rollingComponents = gson.fromJson(json, new TypeToken<List<RollingComponent>>(){}.getType());
-            for (RollingComponent rollingComponent : rollingComponents) {
-                this.componentRepository.insertComponent(rollingComponent);
+            File file = fileFactory.getComponentsFile();
+            if (file.exists()) {
+                String json = FileUtils.readFileToString(fileFactory.getComponentsFile(), Charset.forName("UTF-8"));
+                List<RollingComponent> rollingComponents = this.gson.fromJson(json, new TypeToken<List<RollingComponent>>(){}.getType());
+                for (RollingComponent rollingComponent : rollingComponents) {
+                    this.componentRepository.insertComponent(rollingComponent);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

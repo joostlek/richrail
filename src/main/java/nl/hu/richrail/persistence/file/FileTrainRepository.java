@@ -7,22 +7,23 @@ import nl.hu.richrail.persistence.TrainRepository;
 import nl.hu.richrail.persistence.memory.repositories.MemoryTrainRepository;
 import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.charset.Charset;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
 
-public class FileTrainRepository implements TrainRepository {
-
-    private final TrainRepository trainRepository;
+public class FileTrainRepository implements TrainRepository, FileOperations {
 
     private final FileFactory fileFactory;
 
-    public FileTrainRepository(FileFactory fileFactory, TrainRepository trainRepository) {
+    private final Gson gson;
+
+    private final TrainRepository trainRepository;
+
+    FileTrainRepository(FileFactory fileFactory, Gson gson) {
         this.fileFactory = fileFactory;
-        this.trainRepository = trainRepository;
+        this.gson = gson;
+        this.trainRepository = new MemoryTrainRepository();
         loadFromFile();
     }
 
@@ -54,23 +55,26 @@ public class FileTrainRepository implements TrainRepository {
         return this.trainRepository.getAllTrains();
     }
 
-    private void saveToFile() {
+    @Override
+    public void saveToFile() {
         try {
-            Gson gson = new Gson();
-            String json = gson.toJson(trainRepository.getAllTrains());
+            String json = this.gson.toJson(trainRepository.getAllTrains());
             FileUtils.writeStringToFile(fileFactory.getTrainsFile(), json, Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadFromFile() {
+    @Override
+    public void loadFromFile() {
         try {
-            Gson gson = new Gson();
-            String json = FileUtils.readFileToString(fileFactory.getTrainsFile(), Charset.forName("UTF-8"));
-            List<Train> trains = gson.fromJson(json, new TypeToken<List<Train>>(){}.getType());
-            for (Train train : trains) {
-                this.trainRepository.saveTrain(train);
+            File file = fileFactory.getTrainsFile();
+            if (file.exists()) {
+                String json = FileUtils.readFileToString(fileFactory.getTrainsFile(), Charset.forName("UTF-8"));
+                List<Train> trains = this.gson.fromJson(json, new TypeToken<List<Train>>(){}.getType());
+                for (Train train : trains) {
+                    this.trainRepository.saveTrain(train);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

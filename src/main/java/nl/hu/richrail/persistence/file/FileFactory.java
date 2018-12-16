@@ -17,10 +17,11 @@ public class FileFactory {
     }
 
     public File getTrainsFile() {
-        return FileUtils.getFile(TRAIN_FILE_NAME);
+        return FileUtils.getFile(this.fileConfig.getPath(), TRAIN_FILE_NAME);
     }
 
     public File getComponentsFile() {
-        return FileUtils.getFile(COMPONENT_FILE_NAME);
+        return FileUtils.getFile(this.fileConfig.getPath(), COMPONENT_FILE_NAME);
     }
+
 }
