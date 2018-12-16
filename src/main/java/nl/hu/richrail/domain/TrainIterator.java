@@ -4,7 +4,6 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Queue;
 
 public class TrainIterator implements Iterator<RollingComponent> {

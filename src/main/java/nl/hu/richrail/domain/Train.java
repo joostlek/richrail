@@ -1,7 +1,6 @@
 package nl.hu.richrail.domain;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
-import nl.hu.richrail.domain.rollingcomponent.type.Wagon;
 
 import java.util.*;
 
