@@ -16,10 +16,10 @@ public class ApplicationGuiForm {
     private JComboBox<String> availableTrains;
     private JLabel selectedTrain;
     private JButton buttonDelete;
-    private JTextField wagonName;
+    private JTextField wagonNameField;
     private JButton buttonCreateWagon;
-    private JComboBox<ComponentComboItem> wagonTypes;
-    private JSpinner wagonSeats;
+    private JComboBox<ComponentComboItem> wagonTypesSelector;
+    private JSpinner wagonSeatsSelector;
     private JPanel drawPanel;
 
     {
@@ -95,23 +95,23 @@ public class ApplicationGuiForm {
         final JLabel label4 = new JLabel();
         label4.setText("Wagon naam");
         panel6.add(label4, cc.xy(1, 1));
-        wagonName = new JTextField();
-        panel6.add(wagonName, cc.xy(3, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
+        wagonNameField = new JTextField();
+        panel6.add(wagonNameField, cc.xy(3, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
         buttonCreateWagon = new JButton();
         buttonCreateWagon.setText("Aanmaken");
         panel6.add(buttonCreateWagon, cc.xy(3, 7));
         final JLabel label5 = new JLabel();
         label5.setText("Wagon type");
         panel6.add(label5, cc.xy(1, 3));
-        wagonTypes = new JComboBox();
+        wagonTypesSelector = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        wagonTypes.setModel(defaultComboBoxModel1);
-        panel6.add(wagonTypes, cc.xy(3, 3));
+        wagonTypesSelector.setModel(defaultComboBoxModel1);
+        panel6.add(wagonTypesSelector, cc.xy(3, 3));
         final JLabel label6 = new JLabel();
         label6.setText("Stoelen");
         panel6.add(label6, cc.xy(1, 5));
-        wagonSeats = new JSpinner();
-        panel6.add(wagonSeats, cc.xy(3, 5, CellConstraints.FILL, CellConstraints.DEFAULT));
+        wagonSeatsSelector = new JSpinner();
+        panel6.add(wagonSeatsSelector, cc.xy(3, 5, CellConstraints.FILL, CellConstraints.DEFAULT));
         final JLabel label7 = new JLabel();
         Font label7Font = this.$$$getFont$$$(null, -1, 14, label7.getFont());
         if (label7Font != null) label7.setFont(label7Font);
@@ -166,20 +166,20 @@ public class ApplicationGuiForm {
         return buttonDelete;
     }
 
-    public JTextField getWagonName() {
-        return wagonName;
+    public JTextField getWagonNameField() {
+        return wagonNameField;
     }
 
     public JButton getButtonCreateWagon() {
         return buttonCreateWagon;
     }
 
-    public JComboBox<ComponentComboItem> getWagonTypes() {
-        return wagonTypes;
+    public JComboBox<ComponentComboItem> getWagonTypesSelector() {
+        return wagonTypesSelector;
     }
 
-    public JSpinner getWagonSeats() {
-        return wagonSeats;
+    public JSpinner getWagonSeatsSelector() {
+        return wagonSeatsSelector;
     }
 
 }

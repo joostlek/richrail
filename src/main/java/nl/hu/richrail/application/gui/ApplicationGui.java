@@ -52,17 +52,17 @@ public class ApplicationGui extends ApplicationBase {
     @Override
     protected void setupWindow() {
         // Add values to fields.
-        this.form.getWagonTypes().addItem(new ComponentComboItem("Wagon", RollingComponentType.Wagon));
-        this.form.getWagonTypes().addItem(new ComponentComboItem("Locomotief", RollingComponentType.Locomotive));
+        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Wagon", RollingComponentType.Wagon));
+        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Locomotief", RollingComponentType.Locomotive));
 
         // Add button listeners.
         this.form.getButtonCreate().addActionListener(new CreateTrainListener(this.trainService, this.form.getNewTrainName()));
         this.form.getButtonDelete().addActionListener(new DeleteTrainListener(this.trainService, this.form.getAvailableTrains()));
         this.form.getButtonCreateWagon().addActionListener(new CreateWagonListener(this.trainService,
                 this.form.getSelectedTrain(),
-                this.form.getWagonName(),
-                this.form.getWagonTypes(),
-                this.form.getWagonSeats()));
+                this.form.getWagonNameField(),
+                this.form.getWagonTypesSelector(),
+                this.form.getWagonSeatsSelector()));
 
         // Add watches.
         this.form.getAvailableTrains().addItemListener(e -> {
@@ -77,9 +77,9 @@ public class ApplicationGui extends ApplicationBase {
             }
         });
 
-        this.form.getWagonTypes().addItemListener(e -> {
+        this.form.getWagonTypesSelector().addItemListener(e -> {
             ComponentComboItem item = (ComponentComboItem) e.getItem();
-            this.form.getWagonSeats().setEnabled(item.getValue() == RollingComponentType.Wagon);
+            this.form.getWagonSeatsSelector().setEnabled(item.getValue() == RollingComponentType.Wagon);
         });
 
         // Add service event handlers.

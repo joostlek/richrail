@@ -18,25 +18,25 @@ public class CreateWagonListener implements ActionListener {
 
     private final JLabel selectedTrain;
 
-    private final JTextField wagonName;
+    private final JTextField wagonNamefield;
 
-    private final JComboBox<ComponentComboItem> wagonTypes;
+    private final JComboBox<ComponentComboItem> wagonTypesSelector;
 
-    private final JSpinner wagonSeats;
+    private final JSpinner wagonSeatsSelector;
 
-    public CreateWagonListener(TrainService trainService, JLabel selectedTrain, JTextField wagonName,
-                               JComboBox<ComponentComboItem> wagonTypes, JSpinner wagonSeats) {
+    public CreateWagonListener(TrainService trainService, JLabel selectedTrain, JTextField wagonNamefield,
+                               JComboBox<ComponentComboItem> wagonTypesSelector, JSpinner wagonSeatsSelector) {
         this.trainService = trainService;
         this.selectedTrain = selectedTrain;
-        this.wagonName = wagonName;
-        this.wagonTypes = wagonTypes;
-        this.wagonSeats = wagonSeats;
+        this.wagonNamefield = wagonNamefield;
+        this.wagonTypesSelector = wagonTypesSelector;
+        this.wagonSeatsSelector = wagonSeatsSelector;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // Just to be safe.
-        if (this.wagonTypes.getSelectedItem() == null) {
+        if (this.wagonTypesSelector.getSelectedItem() == null) {
             logger.log(Level.INFO, "No wagon type was selected.");
             return;
         }
@@ -51,9 +51,9 @@ public class CreateWagonListener implements ActionListener {
         }
 
         // Get all properties.
-        String wagonName = this.wagonName.getText();
-        ComponentComboItem wagonType = (ComponentComboItem) this.wagonTypes.getSelectedItem();
-        Integer wagonSeats = (Integer) this.wagonSeats.getValue();
+        String wagonName = this.wagonNamefield.getText();
+        ComponentComboItem wagonType = (ComponentComboItem) this.wagonTypesSelector.getSelectedItem();
+        Integer wagonSeats = (Integer) this.wagonSeatsSelector.getValue();
 
         try {
             // Create rolling component.
