@@ -5,6 +5,7 @@ import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilder;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentBuilderFactory;
 import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
+import nl.hu.richrail.exceptions.TrainNotFoundException;
 import nl.hu.richrail.exceptions.TrainServiceException;
 import nl.hu.richrail.persistence.ComponentRepository;
 import nl.hu.richrail.persistence.TrainRepository;
@@ -70,7 +71,7 @@ public class TrainService {
 
     public void createComponent(String trainKey, String key, RollingComponentType type, int seats) throws TrainServiceException {
         if (trainKey != null && !this.trainRepository.hasTrain(trainKey)) {
-            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+            throw new TrainNotFoundException(trainKey);
         }
 
         if (key == null || key.isEmpty()) {
@@ -101,7 +102,7 @@ public class TrainService {
 
     public int getTrainSeatCount(String trainKey) throws TrainServiceException {
         if (!this.trainRepository.hasTrain(trainKey)) {
-            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+            throw new TrainNotFoundException(trainKey);
         }
 
         return this.componentRepository
@@ -139,7 +140,7 @@ public class TrainService {
 
     public void addComponentToTrain(String trainKey, String componentKey) throws TrainServiceException {
         if (!this.trainRepository.hasTrain(trainKey)) {
-            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+            throw new TrainNotFoundException(trainKey);
         }
 
         if (!this.componentRepository.hasComponent(componentKey)) {
@@ -151,7 +152,7 @@ public class TrainService {
 
     public boolean removeComponentFromTrain(String trainKey, String componentKey) throws TrainServiceException {
         if (!this.trainRepository.hasTrain(trainKey)) {
-            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+            throw new TrainNotFoundException(trainKey);
         }
 
         List<RollingComponent> components = this.componentRepository.getComponentsByTrainKey(trainKey);
