@@ -13,11 +13,6 @@ public class DatabaseConnectionFactory {
     }
 
     public Connection createConnection() throws SQLException {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         return DriverManager.getConnection(this.config.getUrl(), this.config.getUsername(), this.config.getPassword());
     }
 
