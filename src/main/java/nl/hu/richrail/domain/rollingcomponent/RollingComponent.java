@@ -10,4 +10,6 @@ public interface RollingComponent {
 
     RollingComponent clone();
 
+    String getType();
+
 }

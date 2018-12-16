@@ -37,6 +37,11 @@ public class Locomotive implements RollingComponent {
     }
 
     @Override
+    public String getType() {
+        return "Locomotive";
+    }
+
+    @Override
     public String toString() {
         return "Locomotive{" +
                 "key='" + key + '\'' +

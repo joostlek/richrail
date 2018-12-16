@@ -41,6 +41,11 @@ public class Wagon implements RollingComponent {
     }
 
     @Override
+    public String getType() {
+        return "Wagon";
+    }
+
+    @Override
     public String toString() {
         return "Wagon{" +
                 "key='" + key + '\'' +
