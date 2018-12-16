@@ -8,7 +8,7 @@ public class Train implements Iterable<RollingComponent> {
 
     private final String key;
 
-    private final Dictionary<String, RollingComponent> componentMap;
+    private transient final Dictionary<String, RollingComponent> componentMap;
 
     public Train(String key) {
         this.key = key;
