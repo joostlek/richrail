@@ -25,7 +25,7 @@ public class ComponentRepositoryLogger implements ComponentRepository {
 
     @Override
     public void updateComponentTrainKey(String key, String trainKey) {
-        logger.log(Level.INFO, "Update component {0} to train key " + trainKey, key);
+        logger.log(Level.INFO, "Update component {0} to train key {1}", new String[]{key, trainKey});
         this.repository.updateComponentTrainKey(key, trainKey);
     }
 
