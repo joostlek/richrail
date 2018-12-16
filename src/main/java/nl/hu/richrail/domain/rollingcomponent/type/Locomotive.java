@@ -34,7 +34,7 @@ public class Locomotive implements RollingComponent {
 
     @Override
     public RollingComponentType getType() {
-        return RollingComponentType.Locomotive;
+        return RollingComponentType.LOCOMOTIVE;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Locomotive implements RollingComponent {
 
     @Override
     public String toString() {
-        return "Locomotive{" +
+        return "LOCOMOTIVE{" +
                 "key='" + key + '\'' +
                 ", trainKey='" + trainKey + '\'' +
                 '}';

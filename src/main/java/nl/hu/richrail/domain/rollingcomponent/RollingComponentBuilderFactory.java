@@ -13,10 +13,10 @@ public class RollingComponentBuilderFactory {
 
     public RollingComponentBuilder getComponentBuilder() {
         switch (this.type) {
-            case Wagon:
+            case WAGON:
                 return new WagonBuilder();
 
-            case Locomotive:
+            case LOCOMOTIVE:
                 return new LocomotiveBuilder();
 
             default:

@@ -52,8 +52,8 @@ public class ApplicationGui extends ApplicationBase {
     @Override
     protected void setupWindow() {
         // Add values to fields.
-        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Wagon", RollingComponentType.Wagon));
-        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Locomotief", RollingComponentType.Locomotive));
+        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Wagon", RollingComponentType.WAGON));
+        this.form.getWagonTypesSelector().addItem(new ComponentComboItem("Locomotief", RollingComponentType.LOCOMOTIVE));
 
         // Add button listeners.
         this.form.getButtonCreate().addActionListener(new CreateTrainListener(this.trainService, this.form.getNewTrainName()));
@@ -79,7 +79,7 @@ public class ApplicationGui extends ApplicationBase {
 
         this.form.getWagonTypesSelector().addItemListener(e -> {
             ComponentComboItem item = (ComponentComboItem) e.getItem();
-            this.form.getWagonSeatsSelector().setEnabled(item.getValue() == RollingComponentType.Wagon);
+            this.form.getWagonSeatsSelector().setEnabled(item.getValue() == RollingComponentType.WAGON);
         });
 
         // Add service event handlers.

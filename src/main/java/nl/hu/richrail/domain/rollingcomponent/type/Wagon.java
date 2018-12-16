@@ -29,7 +29,7 @@ public class Wagon implements RollingComponent {
 
     @Override
     public RollingComponentType getType() {
-        return RollingComponentType.Wagon;
+        return RollingComponentType.WAGON;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Wagon implements RollingComponent {
 
     @Override
     public String toString() {
-        return "Wagon{" +
+        return "WAGON{" +
                 "key='" + key + '\'' +
                 ", seats=" + seats +
                 ", trainKey='" + trainKey + '\'' +

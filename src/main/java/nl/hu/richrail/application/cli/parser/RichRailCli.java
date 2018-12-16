@@ -29,7 +29,7 @@ public class RichRailCli extends RichRailBaseListener {
     @Override
     public void enterCommandNewLocomotive(parser.RichRailParser.CommandNewLocomotiveContext ctx) {
         try {
-            this.trainService.createComponent(null, ctx.ID().getText(), RollingComponentType.Locomotive, 0);
+            this.trainService.createComponent(null, ctx.ID().getText(), RollingComponentType.LOCOMOTIVE, 0);
             this.callback.writeMessage(String.format("De locomotief %s is aangemaakt.", ctx.ID().getText()));
         } catch (TrainServiceException e) {
             this.callback.writeMessage(e.getErrorMessage());
@@ -45,7 +45,7 @@ public class RichRailCli extends RichRailBaseListener {
                 numSeats = Integer.valueOf(ctx.NUMBER().getText());
             }
 
-            this.trainService.createComponent(null, ctx.ID().getText(), RollingComponentType.Wagon, numSeats);
+            this.trainService.createComponent(null, ctx.ID().getText(), RollingComponentType.WAGON, numSeats);
             this.callback.writeMessage(String.format("De wagon %s is aangemaakt met %d stoelen.", ctx.ID().getText(), numSeats));
         } catch (TrainServiceException e) {
             this.callback.writeMessage(e.getErrorMessage());
