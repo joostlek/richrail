@@ -4,6 +4,7 @@ import nl.hu.richrail.domain.Train;
 import nl.hu.richrail.exceptions.TrainServiceException;
 import nl.hu.richrail.services.TrainService;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,17 +26,24 @@ public class CreateTrainListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String trainName = this.trainNameField.getName();
+        String trainName = this.trainNameField.getText();
 
-        try {
-            Train train = this.trainService.createTrain(trainName);
-
-            // Something with train
-        } catch (TrainServiceException e1) {
-            logger.log(Level.SEVERE, e1.getMessage());
+        if (trainName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Je moet een trein naam invullen.", "Oeps!", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
-        this.trainNameField.setText("");
+        try {
+            this.trainService.createTrain(trainName);
+        } catch (TrainServiceException e1) {
+            logger.log(Level.SEVERE, e1.getMessage());
+
+            JOptionPane.showMessageDialog(null,
+                    "Er ging iets fout bij het opslaan van de trein, kijk in de console voor meer details.",
+                    "Foutje!", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            this.trainNameField.setText("");
+        }
     }
 
 }

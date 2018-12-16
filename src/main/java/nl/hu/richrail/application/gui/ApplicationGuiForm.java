@@ -15,13 +15,13 @@ public class ApplicationGuiForm {
     private JPanel containerView;
     private JButton buttonCreate;
     private JTextField newTrainName;
-    private JComboBox availableTrains;
+    private JComboBox<String> availableTrains;
     private JLabel selectedTrain;
     private JButton buttonSelect;
     private JButton buttonDelete;
     private JTextField wagonName;
     private JButton buttonCreateWagon;
-    private JComboBox wagonTypes;
+    private JComboBox<String> wagonTypes;
     private JSpinner wagonSeats;
 
     {
@@ -40,7 +40,7 @@ public class ApplicationGuiForm {
      */
     private void $$$setupUI$$$() {
         containerView = new JPanel();
-        containerView.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
+        containerView.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         containerView.add(panel1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -109,9 +109,13 @@ public class ApplicationGuiForm {
         label5.setText("Wagon type");
         panel7.add(label5, cc.xy(1, 3));
         wagonTypes = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        defaultComboBoxModel1.addElement("Wagon");
+        defaultComboBoxModel1.addElement("Locomotief");
+        wagonTypes.setModel(defaultComboBoxModel1);
         panel7.add(wagonTypes, cc.xy(3, 3));
         final JLabel label6 = new JLabel();
-        label6.setText("Seats");
+        label6.setText("Stoelen");
         panel7.add(label6, cc.xy(1, 5));
         wagonSeats = new JSpinner();
         panel7.add(wagonSeats, cc.xy(3, 5, CellConstraints.FILL, CellConstraints.DEFAULT));
@@ -157,7 +161,7 @@ public class ApplicationGuiForm {
         return newTrainName;
     }
 
-    public JComboBox getAvailableTrains() {
+    public JComboBox<String> getAvailableTrains() {
         return availableTrains;
     }
 
@@ -181,7 +185,7 @@ public class ApplicationGuiForm {
         return buttonCreateWagon;
     }
 
-    public JComboBox getWagonTypes() {
+    public JComboBox<String> getWagonTypes() {
         return wagonTypes;
     }
 
