@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface ComponentRepository {
 
-    void saveComponent(RollingComponent component);
+    void insertComponent(RollingComponent component);
+
+    void updateComponentTrainKey(String key, String trainKey);
+
+    void removeComponentTrainKey(String key);
 
     void deleteComponent(String key);
 

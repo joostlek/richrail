@@ -87,8 +87,6 @@ public class DatabaseTrainRepository implements TrainRepository {
                 Train train = new Train(key);
                 trains.add(train);
             }
-
-            connection.commit();
         } catch (SQLException e) {
             logger.log(Level.WARNING, e.getMessage());
         }

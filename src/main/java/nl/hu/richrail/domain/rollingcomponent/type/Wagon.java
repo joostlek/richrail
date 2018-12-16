@@ -38,6 +38,11 @@ public class Wagon implements RollingComponent {
     }
 
     @Override
+    public void setTrainKey(String trainKey) {
+        this.trainKey = trainKey;
+    }
+
+    @Override
     public RollingComponent clone() {
         return new WagonBuilder()
                 .setKey(this.key)

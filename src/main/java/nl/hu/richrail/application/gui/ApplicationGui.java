@@ -28,10 +28,10 @@ public class ApplicationGui extends ApplicationBase {
 
     public ApplicationGui(StorageMethod storage) {
         super(storage);
+        this.form = new ApplicationGuiForm();
         this.trainRepository = new TrainRepositoryEvents(storage.getTrainRepository());
         this.componentRepository = new ComponentRepositoryEvents(storage.getComponentRepository());
         this.trainService = new TrainService(this.trainRepository, this.componentRepository);
-        this.form = new ApplicationGuiForm();
     }
 
     @Override
@@ -83,14 +83,14 @@ public class ApplicationGui extends ApplicationBase {
         });
 
         // Add service event handlers.
-        this.trainRepository.getEventManager().subscribe("save", eventType -> refreshTrains());
-        this.trainRepository.getEventManager().subscribe("delete", eventType -> refreshTrains());
+        this.trainRepository.getEventManager().subscribe("save", eventType -> updateTrains());
+        this.trainRepository.getEventManager().subscribe("delete", eventType -> updateTrains());
 
         // Start rendering the GUI.
         setContentPane(this.form.$$$getRootComponent$$$());
 
         // Load initial data.
-        refreshTrains();
+        updateTrains();
     }
 
     private void setSelectedTrain(String key) {
@@ -104,7 +104,7 @@ public class ApplicationGui extends ApplicationBase {
         this.form.getSelectedTrain().setText(this.selectedTrainKey);
     }
 
-    private void refreshTrains() {
+    private void updateTrains() {
         this.form.getAvailableTrains().removeAllItems();
 
         for (Train train : this.trainRepository.getAllTrains()) {

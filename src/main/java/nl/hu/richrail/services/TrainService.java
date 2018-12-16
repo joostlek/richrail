@@ -9,6 +9,12 @@ import nl.hu.richrail.exceptions.TrainServiceException;
 import nl.hu.richrail.persistence.ComponentRepository;
 import nl.hu.richrail.persistence.TrainRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class TrainService {
 
     private static final int KEY_MAX_LENGTH = 20;
@@ -46,8 +52,24 @@ public class TrainService {
         this.trainRepository.deleteTrain(key);
     }
 
+    public List<Train> getTrainsWithComponents() {
+        Map<String, Train> trains = this.trainRepository.getAllTrains().stream().collect(Collectors.toMap(Train::getKey, Function.identity()));
+        List<RollingComponent> components = this.componentRepository.getAllComponents();
+
+        for (RollingComponent component : components) {
+            if (component.getTrainKey() != null) {
+                Train train = trains.get(component.getTrainKey());
+                if (train != null) {
+                    train.addComponent(component);
+                }
+            }
+        }
+
+        return new ArrayList<>(trains.values());
+    }
+
     public void createComponent(String trainKey, String key, RollingComponentType type, int seats) throws TrainServiceException {
-        if (!this.trainRepository.hasTrain(trainKey)) {
+        if (trainKey != null && !this.trainRepository.hasTrain(trainKey)) {
             throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
         }
 
@@ -74,7 +96,74 @@ public class TrainService {
                 .setSeats(seats)
                 .build();
 
-        this.componentRepository.saveComponent(component);
+        this.componentRepository.insertComponent(component);
+    }
+
+    public int getTrainSeatCount(String trainKey) throws TrainServiceException {
+        if (!this.trainRepository.hasTrain(trainKey)) {
+            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+        }
+
+        return this.componentRepository
+                .getComponentsByTrainKey(trainKey)
+                .stream()
+                .mapToInt(RollingComponent::getSeats)
+                .sum();
+    }
+
+    public int getComponentSeatCount(String componentKey) throws TrainServiceException {
+        if (!this.componentRepository.hasComponent(componentKey)) {
+            throw new TrainServiceException(String.format("Er bestaat geen wagon met de naam '%s'.", componentKey));
+        }
+
+        return this.componentRepository.getComponent(componentKey).getSeats();
+    }
+
+    public boolean removeTrain(String trainKey) {
+        if (!this.trainRepository.hasTrain(trainKey)) {
+            return false;
+        }
+
+        this.trainRepository.deleteTrain(trainKey);
+        return true;
+    }
+
+    public boolean removeComponent(String componentKey) {
+        if (!this.componentRepository.hasComponent(componentKey)) {
+            return false;
+        }
+
+        this.componentRepository.deleteComponent(componentKey);
+        return true;
+    }
+
+    public void addComponentToTrain(String trainKey, String componentKey) throws TrainServiceException {
+        if (!this.trainRepository.hasTrain(trainKey)) {
+            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+        }
+
+        if (!this.componentRepository.hasComponent(componentKey)) {
+            throw new TrainServiceException(String.format("Er bestaat geen wagon met de naam '%s'.", componentKey));
+        }
+
+        this.componentRepository.updateComponentTrainKey(componentKey, trainKey);
+    }
+
+    public boolean removeComponentFromTrain(String trainKey, String componentKey) throws TrainServiceException {
+        if (!this.trainRepository.hasTrain(trainKey)) {
+            throw new TrainServiceException(String.format("Er bestaat geen trein met de naam '%s'.", trainKey));
+        }
+
+        List<RollingComponent> components = this.componentRepository.getComponentsByTrainKey(trainKey);
+
+        for (RollingComponent component : components) {
+            if (component.getKey().equalsIgnoreCase(componentKey)) {
+                this.componentRepository.removeComponentTrainKey(componentKey);
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

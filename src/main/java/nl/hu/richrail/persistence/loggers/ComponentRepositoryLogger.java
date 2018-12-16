@@ -18,9 +18,21 @@ public class ComponentRepositoryLogger implements ComponentRepository {
     }
 
     @Override
-    public void saveComponent(RollingComponent component) {
+    public void insertComponent(RollingComponent component) {
         logger.log(Level.INFO, "Save component {0}", component.getKey());
-        this.repository.saveComponent(component);
+        this.repository.insertComponent(component);
+    }
+
+    @Override
+    public void updateComponentTrainKey(String key, String trainKey) {
+        logger.log(Level.INFO, String.format("Update component %s to train key %s", key, trainKey));
+        this.repository.updateComponentTrainKey(key, trainKey);
+    }
+
+    @Override
+    public void removeComponentTrainKey(String key) {
+        logger.log(Level.INFO, String.format("Remove component %s train key", key));
+        this.repository.removeComponentTrainKey(key);
     }
 
     @Override

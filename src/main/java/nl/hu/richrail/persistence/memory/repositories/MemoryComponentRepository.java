@@ -14,8 +14,18 @@ public class MemoryComponentRepository implements ComponentRepository {
     }
 
     @Override
-    public void saveComponent(RollingComponent component) {
+    public void insertComponent(RollingComponent component) {
         this.componentsMap.put(component.getKey(), component);
+    }
+
+    @Override
+    public void updateComponentTrainKey(String key, String trainKey) {
+        this.componentsMap.get(key).setTrainKey(trainKey);
+    }
+
+    @Override
+    public void removeComponentTrainKey(String key) {
+        this.componentsMap.get(key).setTrainKey(null);
     }
 
     @Override

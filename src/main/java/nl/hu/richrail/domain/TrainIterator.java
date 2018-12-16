@@ -17,7 +17,7 @@ public class TrainIterator implements Iterator<RollingComponent> {
 
     @Override
     public boolean hasNext() {
-        return this.items.isEmpty();
+        return !this.items.isEmpty();
     }
 
     @Override

@@ -43,6 +43,11 @@ public class Locomotive implements RollingComponent {
     }
 
     @Override
+    public void setTrainKey(String trainKey) {
+        this.trainKey = trainKey;
+    }
+
+    @Override
     public String toString() {
         return "Locomotive{" +
                 "key='" + key + '\'' +
