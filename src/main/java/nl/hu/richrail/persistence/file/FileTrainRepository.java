@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -87,7 +86,8 @@ public class FileTrainRepository implements TrainRepository, FileOperations {
             if (file.exists()) {
                 // Read trains.
                 String json = FileUtils.readFileToString(fileFactory.getTrainsFile(), StandardCharsets.UTF_8);
-                List<FileTrain> trains = this.gson.fromJson(json, new TypeToken<List<FileTrain>>(){}.getType());
+                List<FileTrain> trains = this.gson.fromJson(json, new TypeToken<List<FileTrain>>() {
+                }.getType());
 
                 // Store trains in memory.
                 for (FileTrain train : trains) {
