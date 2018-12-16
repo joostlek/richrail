@@ -36,6 +36,12 @@ public class ComponentRepositoryLogger implements ComponentRepository {
     }
 
     @Override
+    public boolean hasComponent(String key) {
+        logger.log(Level.INFO, "Has component {0}", key);
+        return this.repository.hasComponent(key);
+    }
+
+    @Override
     public List<RollingComponent> getAllComponents() {
         logger.log(Level.INFO, "Get all components");
         return this.repository.getAllComponents();

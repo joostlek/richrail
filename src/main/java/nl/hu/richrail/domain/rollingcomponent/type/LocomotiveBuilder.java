@@ -7,9 +7,7 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
 
     private String key;
 
-    private String imagePath;
-
-    private String trainKey = null;
+    private String trainKey;
 
     @Override
     public RollingComponentBuilder setKey(String key) {
@@ -18,14 +16,9 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
     }
 
     @Override
-    public RollingComponentBuilder setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-        return this;
-    }
-
-    @Override
     public RollingComponentBuilder setSeats(int seats) {
-        throw new UnsupportedOperationException("Locomotive can not have seats.");
+        // Just ignore.
+        return this;
     }
 
     @Override
@@ -36,7 +29,7 @@ public class LocomotiveBuilder implements RollingComponentBuilder {
 
     @Override
     public RollingComponent build() {
-        return new Locomotive(this.key, this.imagePath, this.trainKey);
+        return new Locomotive(this.key, this.trainKey);
     }
 
 }

@@ -4,15 +4,24 @@ import nl.hu.richrail.domain.rollingcomponent.type.LocomotiveBuilder;
 import nl.hu.richrail.domain.rollingcomponent.type.WagonBuilder;
 
 public class RollingComponentBuilderFactory {
-    public RollingComponentBuilder getComponentBuilder(String type) {
-        if (type == null) {
-            return null;
-        }
-        if (type.equalsIgnoreCase("WAGON")) {
-            return new WagonBuilder();
-        } else if (type.equalsIgnoreCase("LOCOMOTIVE")) {
-            return new LocomotiveBuilder();
-        }
-        return null;
+
+    private final RollingComponentType type;
+
+    public RollingComponentBuilderFactory(RollingComponentType type) {
+        this.type = type;
     }
+
+    public RollingComponentBuilder getComponentBuilder() {
+        switch (this.type) {
+            case Wagon:
+                return new WagonBuilder();
+
+            case Locomotive:
+                return new LocomotiveBuilder();
+
+            default:
+                throw new IllegalArgumentException("Unknown type.");
+        }
+    }
+
 }

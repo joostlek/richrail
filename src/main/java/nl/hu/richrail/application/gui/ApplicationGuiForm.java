@@ -4,6 +4,8 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import nl.hu.richrail.application.gui.items.ComponentComboItem;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -17,11 +19,10 @@ public class ApplicationGuiForm {
     private JTextField newTrainName;
     private JComboBox<String> availableTrains;
     private JLabel selectedTrain;
-    private JButton buttonSelect;
     private JButton buttonDelete;
     private JTextField wagonName;
     private JButton buttonCreateWagon;
-    private JComboBox<String> wagonTypes;
+    private JComboBox<ComponentComboItem> wagonTypes;
     private JSpinner wagonSeats;
 
     {
@@ -66,7 +67,7 @@ public class ApplicationGuiForm {
         containerView.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(10, 10, 10, 5), null));
         final JPanel panel5 = new JPanel();
-        panel5.setLayout(new FormLayout("fill:d:noGrow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        panel5.setLayout(new FormLayout("fill:d:noGrow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
         panel4.add(panel5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonCreate = new JButton();
         buttonCreate.setText("Aanmaken");
@@ -76,15 +77,12 @@ public class ApplicationGuiForm {
         panel5.add(newTrainName, cc.xy(3, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
         availableTrains = new JComboBox();
         panel5.add(availableTrains, cc.xy(3, 3));
-        buttonSelect = new JButton();
-        buttonSelect.setText("Selecteer");
-        panel5.add(buttonSelect, cc.xy(5, 3));
-        buttonDelete = new JButton();
-        buttonDelete.setText("Verwijder");
-        panel5.add(buttonDelete, cc.xy(5, 5));
         final JLabel label2 = new JLabel();
         label2.setText("Trein naam");
         panel5.add(label2, cc.xy(1, 1));
+        buttonDelete = new JButton();
+        buttonDelete.setText("Verwijder");
+        panel5.add(buttonDelete, cc.xy(5, 3));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$(null, -1, 14, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
@@ -110,8 +108,6 @@ public class ApplicationGuiForm {
         panel7.add(label5, cc.xy(1, 3));
         wagonTypes = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("Wagon");
-        defaultComboBoxModel1.addElement("Locomotief");
         wagonTypes.setModel(defaultComboBoxModel1);
         panel7.add(wagonTypes, cc.xy(3, 3));
         final JLabel label6 = new JLabel();
@@ -169,10 +165,6 @@ public class ApplicationGuiForm {
         return selectedTrain;
     }
 
-    public JButton getButtonSelect() {
-        return buttonSelect;
-    }
-
     public JButton getButtonDelete() {
         return buttonDelete;
     }
@@ -185,7 +177,7 @@ public class ApplicationGuiForm {
         return buttonCreateWagon;
     }
 
-    public JComboBox<String> getWagonTypes() {
+    public JComboBox<ComponentComboItem> getWagonTypes() {
         return wagonTypes;
     }
 

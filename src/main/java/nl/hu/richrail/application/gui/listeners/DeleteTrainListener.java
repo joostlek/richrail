@@ -40,10 +40,7 @@ public class DeleteTrainListener implements ActionListener {
                 this.trainService.deleteTrain(selectedItem);
             } catch (TrainServiceException e1) {
                 logger.log(Level.SEVERE, e1.getMessage());
-
-                JOptionPane.showMessageDialog(null,
-                        "Er ging iets fout bij het verwijderen van de trein, kijk in de console voor meer details.",
-                        "Foutje!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, e1.getErrorMessage(), "Foutje!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

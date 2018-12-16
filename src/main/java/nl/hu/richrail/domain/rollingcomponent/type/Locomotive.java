@@ -1,29 +1,22 @@
 package nl.hu.richrail.domain.rollingcomponent.type;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 
 public class Locomotive implements RollingComponent {
 
     private final String key;
 
-    private final String imagePath;
-
     private String trainKey;
 
-    Locomotive(String key, String imagePath, String trainKey) {
+    Locomotive(String key, String trainKey) {
         this.key = key;
-        this.imagePath = imagePath;
         this.trainKey = trainKey;
     }
 
     @Override
     public String getKey() {
         return key;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override
@@ -35,13 +28,13 @@ public class Locomotive implements RollingComponent {
     public RollingComponent clone() {
         return new LocomotiveBuilder()
                 .setKey(this.key)
-                .setImagePath(this.imagePath)
+                .setTrainKey(this.trainKey)
                 .build();
     }
 
     @Override
-    public String getType() {
-        return "Locomotive";
+    public RollingComponentType getType() {
+        return RollingComponentType.Locomotive;
     }
 
     @Override
@@ -53,7 +46,7 @@ public class Locomotive implements RollingComponent {
     public String toString() {
         return "Locomotive{" +
                 "key='" + key + '\'' +
-                ", imagePath='" + imagePath + '\'' +
+                ", trainKey='" + trainKey + '\'' +
                 '}';
     }
 

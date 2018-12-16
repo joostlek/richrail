@@ -4,13 +4,11 @@ public interface RollingComponent {
 
     String getKey();
 
-    String getImagePath();
-
     int getSeats();
 
     RollingComponent clone();
 
-    String getType();
+    RollingComponentType getType();
 
     String getTrainKey();
 

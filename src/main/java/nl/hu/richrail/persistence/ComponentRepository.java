@@ -12,6 +12,8 @@ public interface ComponentRepository {
 
     RollingComponent getComponent(String key);
 
+    boolean hasComponent(String key);
+
     List<RollingComponent> getAllComponents();
 
     List<RollingComponent> getComponentsByTrainKey(String key);

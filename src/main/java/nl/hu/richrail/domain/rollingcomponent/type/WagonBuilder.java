@@ -12,21 +12,13 @@ public class WagonBuilder implements RollingComponentBuilder {
 
     private String key;
 
-    private String imagePath;
-
-    private String trainKey = null;
+    private String trainKey;
 
     private int seats = DEFAULT_SEATS;
 
     @Override
     public RollingComponentBuilder setKey(String key) {
         this.key = key;
-        return this;
-    }
-
-    @Override
-    public RollingComponentBuilder setImagePath(String imagePath) {
-        this.imagePath = imagePath;
         return this;
     }
 
@@ -44,7 +36,7 @@ public class WagonBuilder implements RollingComponentBuilder {
 
     @Override
     public RollingComponent build() {
-        return new Wagon(this.key, this.imagePath, this.seats, this.trainKey);
+        return new Wagon(this.key, this.seats, this.trainKey);
     }
 
 }

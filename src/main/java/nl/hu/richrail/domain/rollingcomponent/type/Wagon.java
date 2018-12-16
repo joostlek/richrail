@@ -1,20 +1,18 @@
 package nl.hu.richrail.domain.rollingcomponent.type;
 
 import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
+import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 
 public class Wagon implements RollingComponent {
 
     private final String key;
 
-    private final String imagePath;
-
     private final int seats;
 
     private String trainKey;
 
-    Wagon(String key, String imagePath, int seats, String trainKey) {
+    Wagon(String key, int seats, String trainKey) {
         this.key = key;
-        this.imagePath = imagePath;
         this.seats = seats;
         this.trainKey = trainKey;
     }
@@ -25,27 +23,13 @@ public class Wagon implements RollingComponent {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public int getSeats() {
         return seats;
     }
 
     @Override
-    public RollingComponent clone() {
-        return new WagonBuilder()
-                .setKey(this.key)
-                .setImagePath(this.imagePath)
-                .setSeats(this.seats)
-                .build();
-    }
-
-    @Override
-    public String getType() {
-        return "Wagon";
+    public RollingComponentType getType() {
+        return RollingComponentType.Wagon;
     }
 
     @Override
@@ -54,11 +38,20 @@ public class Wagon implements RollingComponent {
     }
 
     @Override
+    public RollingComponent clone() {
+        return new WagonBuilder()
+                .setKey(this.key)
+                .setSeats(this.seats)
+                .setTrainKey(this.trainKey)
+                .build();
+    }
+
+    @Override
     public String toString() {
         return "Wagon{" +
                 "key='" + key + '\'' +
-                ", imagePath='" + imagePath + '\'' +
                 ", seats=" + seats +
+                ", trainKey='" + trainKey + '\'' +
                 '}';
     }
 

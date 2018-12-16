@@ -29,6 +29,11 @@ public class MemoryComponentRepository implements ComponentRepository {
     }
 
     @Override
+    public boolean hasComponent(String key) {
+        return this.componentsMap.get(key) != null;
+    }
+
+    @Override
     public List<RollingComponent> getAllComponents() {
         return Collections.list(this.componentsMap.elements());
     }

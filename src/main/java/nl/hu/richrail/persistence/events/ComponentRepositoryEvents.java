@@ -29,6 +29,11 @@ public class ComponentRepositoryEvents implements ComponentRepository {
     }
 
     @Override
+    public boolean hasComponent(String key) {
+        return this.repository.hasComponent(key);
+    }
+
+    @Override
     public List<RollingComponent> getAllComponents() {
         return this.repository.getAllComponents();
     }

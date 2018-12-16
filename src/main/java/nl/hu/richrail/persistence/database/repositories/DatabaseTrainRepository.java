@@ -61,8 +61,18 @@ public class DatabaseTrainRepository implements TrainRepository {
 
     @Override
     public boolean hasTrain(String key) {
-        // TODO: Implement.
-        return false;
+        try (Connection connection = this.connectionFactory.createConnection();
+             PreparedStatement stmt = connection.prepareStatement("SELECT `key` FROM trains WHERE `key` = ?")) {
+
+            stmt.setString(1, key);
+
+            try (ResultSet result = stmt.executeQuery()) {
+                return result.next();
+            }
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage());
+            return false;
+        }
     }
 
     @Override

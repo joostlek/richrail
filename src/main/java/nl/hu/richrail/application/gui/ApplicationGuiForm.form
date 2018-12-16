@@ -68,8 +68,6 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:max(d;4px):noGrow"/>
             <colspec value="fill:d:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
@@ -108,24 +106,6 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="d62da" class="javax.swing.JButton" binding="buttonSelect">
-                <constraints>
-                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <forms/>
-                </constraints>
-                <properties>
-                  <text value="Selecteer"/>
-                </properties>
-              </component>
-              <component id="b24f7" class="javax.swing.JButton" binding="buttonDelete">
-                <constraints>
-                  <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <forms/>
-                </constraints>
-                <properties>
-                  <text value="Verwijder"/>
-                </properties>
-              </component>
               <component id="90fe" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -133,6 +113,15 @@
                 </constraints>
                 <properties>
                   <text value="Trein naam"/>
+                </properties>
+              </component>
+              <component id="b24f7" class="javax.swing.JButton" binding="buttonDelete">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Verwijder"/>
                 </properties>
               </component>
             </children>
@@ -217,10 +206,7 @@
                   <forms/>
                 </constraints>
                 <properties>
-                  <model>
-                    <item value="Wagon"/>
-                    <item value="Locomotief"/>
-                  </model>
+                  <model/>
                 </properties>
               </component>
               <component id="1a089" class="javax.swing.JLabel">
