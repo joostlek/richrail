@@ -1,7 +1,6 @@
 package nl.hu.richrail.persistence.database.repositories;
 
 import nl.hu.richrail.domain.Train;
-import nl.hu.richrail.domain.rollingcomponent.RollingComponent;
 import nl.hu.richrail.persistence.TrainRepository;
 import nl.hu.richrail.persistence.database.DatabaseConnectionFactory;
 
