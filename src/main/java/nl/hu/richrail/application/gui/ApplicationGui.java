@@ -59,6 +59,11 @@ public class ApplicationGui extends ApplicationBase {
             }
         });
 
+        this.form.getWagonTypes().addItemListener(e -> {
+            String selectedItem = (String) e.getItem();
+            this.form.getWagonSeats().setEnabled(selectedItem.equalsIgnoreCase("wagon"));
+        });
+
         this.trainRepository.getEventManager().subscribe("save", eventType -> refreshTrains());
         this.trainRepository.getEventManager().subscribe("delete", eventType -> refreshTrains());
 
