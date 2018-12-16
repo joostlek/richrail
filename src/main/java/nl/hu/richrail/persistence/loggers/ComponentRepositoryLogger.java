@@ -25,13 +25,13 @@ public class ComponentRepositoryLogger implements ComponentRepository {
 
     @Override
     public void updateComponentTrainKey(String key, String trainKey) {
-        logger.log(Level.INFO, String.format("Update component %s to train key %s", key, trainKey));
+        logger.log(Level.INFO, "Update component {0} to train key " + trainKey, key);
         this.repository.updateComponentTrainKey(key, trainKey);
     }
 
     @Override
     public void removeComponentTrainKey(String key) {
-        logger.log(Level.INFO, String.format("Remove component %s train key", key));
+        logger.log(Level.INFO, "Remove component {0} train key", key);
         this.repository.removeComponentTrainKey(key);
     }
 
