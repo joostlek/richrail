@@ -10,8 +10,7 @@ import nl.hu.richrail.persistence.events.TrainRepositoryEvents;
 import nl.hu.richrail.services.TrainService;
 import nl.hu.richrail.utils.CliUtils;
 
-import javax.swing.SwingUtilities;
-import java.awt.Dimension;
+import java.awt.*;
 
 public class ApplicationCli extends ApplicationBase implements RichRailCliCallback {
 
@@ -79,8 +78,8 @@ public class ApplicationCli extends ApplicationBase implements RichRailCliCallba
     @Override
     public void updateOverview() {
         this.form.getTextOverview().setText(
-            CliUtils.getComponentsString(this.componentRepository.getAllComponents()) +
-            CliUtils.getTrainsString(this.trainService.getTrainsWithComponents())
+                CliUtils.getComponentsString(this.componentRepository.getAllComponents()) +
+                        CliUtils.getTrainsString(this.trainService.getTrainsWithComponents())
         );
     }
 

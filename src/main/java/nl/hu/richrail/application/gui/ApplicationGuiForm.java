@@ -5,13 +5,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import nl.hu.richrail.application.gui.items.ComponentComboItem;
-import nl.hu.richrail.domain.rollingcomponent.RollingComponentType;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Insets;
+import java.awt.*;
 
 public class ApplicationGuiForm {
     private JPanel containerView;
