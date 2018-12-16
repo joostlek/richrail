@@ -17,12 +17,6 @@ public class Wagon implements RollingComponent {
         this.trainKey = trainKey;
     }
 
-    private Wagon(Wagon wagon) {
-        this.key = wagon.key;
-        this.seats = wagon.seats;
-        this.trainKey = wagon.trainKey;
-    }
-
     @Override
     public String getKey() {
         return key;
@@ -50,7 +44,7 @@ public class Wagon implements RollingComponent {
 
     @Override
     public RollingComponent clone() {
-        return new Wagon(this);
+        return new Wagon(this.key, this.seats, this.trainKey);
     }
 
     @Override
