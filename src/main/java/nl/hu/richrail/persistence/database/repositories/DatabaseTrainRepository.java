@@ -55,19 +55,8 @@ public class DatabaseTrainRepository implements TrainRepository {
 
     @Override
     public Train getTrain(String key) {
-        try (Connection connection = this.connectionFactory.createConnection();
-             PreparedStatement stmt = connection.prepareStatement("SELECT `key` FROM TRAINS WHERE `key` = ?")) {
-            stmt.setString(1, key);
-            try (ResultSet result = stmt.executeQuery()) {
-                if (result.next()) {
-                    Train train = new Train(key);
-                    List<RollingComponent> rollingComponents = new DatabaseComponentRepository(this.connectionFactory).getComponentsByTrainKey(key);
-                    rollingComponents.forEach(train::addComponent);
-                    return train;
-                }
-            }
-        } catch (SQLException e) {
-            logger.log(Level.WARNING, e.getMessage());
+        if (this.hasTrain(key)) {
+            return new Train(key);
         }
         return null;
     }
